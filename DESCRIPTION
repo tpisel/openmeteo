@@ -1,12 +1,17 @@
-Package: openmeteor
-Title: What the Package Does (One Line, Title Case)
+Package: openmeteo
+Title: Request Weather Data from the Open-Meteo API
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Tom", "Pisel", "mail@tompisel.com", role = c("aut", "cre"))
+Description: A client wrapper for the Open-Meteo API that provides Open-Meteo
+    weather data in a tidy format. No API key is required.
+License: use_mit_license()
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Imports: 
+    httr,
+    tibblify
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
