@@ -11,9 +11,6 @@ test_that("multiple calls return correctly", {
 
 test_that("non-string inputs return an error", {
   expect_error(geocode(1,2))
-})
-
-test_that("non-numeric inputs return an error", {
   expect_error(geocode("sydney","two"))
 })
 

@@ -14,10 +14,9 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' dt <- geocode("Sydney")
 #' sydney_coords <- c(dt$latitude, dt$longitude)
-#' }
+
 geocode <- function(location_string, n_results = 1, language = "en") {
   if (!is.character(location_string)) stop("location_string must be string")
   if (!is.numeric(n_results)) stop("n_results must be integer/numeric")
@@ -31,9 +30,9 @@ geocode <- function(location_string, n_results = 1, language = "en") {
   )
 
   pl <- httr::GET(httr::modify_url(base_url, query = queries))
+  .response_OK(pl)
 
-  if (pl$status != 200) stop(paste("API returned status code", pl$status))
-  if (is.null(content(pl, as = "parsed")$results)) stop("No matches found")
+  if (is.null(httr::content(pl, as = "parsed")$results)) stop("No matches found")
 
-  tibblify(content(pl, as = "parsed")$results)
+  tibblify::tibblify(httr::content(pl, as = "parsed")$results)
 }
