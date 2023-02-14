@@ -120,6 +120,8 @@ weather_forecast <- function(
 
     return(dh)
   }
+
+  stop("did you specify a correct hourly/daily variable? I think this is the right place for this error.")
 }
 
 
