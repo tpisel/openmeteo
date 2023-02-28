@@ -101,13 +101,18 @@ test_spec <- tspec_df(
 
 
 
-TODO
-# check performance of || and && calls
-# error cases to handle when forecasting non-existant variables
-# the api throws an error, e.g. https://archive-api.open-meteo.com/v1/archive?latitude=52.52&longitude=13.41&start_date=2023-01-03&end_date=2023-02-02&hourly=sunset&timezone=auto
-
-
+## TODO
 # current weather
 # historical weather
 
+# in utils, error handling for api errors
+
+
+
+## BEFORE FINAL
+# check performance of || and && calls
+# error cases to handle when forecasting non-existant variables
+# api error handling
+# do we include the weather_variables() call?
+# test coverage checks
 
