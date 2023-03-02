@@ -107,6 +107,14 @@ test_spec <- tspec_df(
 
 # in utils, error handling for api errors
 
+# handling units? _no_
+
+# weather code lookup? maybe as last thing
+
+
+
+# REFACTOR THE HISTORICAL AND CURRENT CALLS
+# with three-dots? look-up construction of wrapper fns
 
 
 ## BEFORE FINAL

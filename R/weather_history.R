@@ -1,11 +1,12 @@
-#' Retrieve Weather Forecasts from the Open-Meteo Forecasting API
+#' Retrieve Historical Weather Data from the Open-Meteo Forecasting API
 #'
 #' @description
 #'
-#' `weather_forecast()` calls the Open-Meteo Weather Forecast API for a given
-#' location. Location provided either as string or `c(latitude,longitude)`. The
-#' next 7 days will be provided if start and end days are not specified.
-#' Full API documentation is available at: <https://open-meteo.com/en/docs>.
+#' `weather_history()` calls the Open-Meteo Historical Weather API for a given
+#' location. Location provided either as string or `c(latitude,longitude)`.
+#' Start and end dates must be provided.
+#'
+#' Full API documentation is available at: <https://open-meteo.com/en/docs/historical-weather-api>.
 #' You can also call [weather_variables()] to retrieve a shortlist of valid hourly
 #' and daily weather variables.
 #'
@@ -30,23 +31,23 @@
 #' weather_forecast("London",hourly="temperature_2m")
 #'
 
-weather_forecast <- function(
-  location,
-  start = NULL,
-  end = NULL,
-  hourly = NULL,
-  daily = NULL,
-  response_units = NULL,
-  model = NULL,
-  timezone = "auto"
-  ){
+weather_history <- function(
+    location,
+    start,
+    end,
+    hourly = NULL,
+    daily = NULL,
+    response_units = NULL,
+    model = NULL,
+    timezone = "auto"
+){
 
   # validation
   if(is.null(hourly) && is.null(daily)) stop("hourly or daily measure not supplied")
-  if(!is.null(start)) if(!.is.date(start)) stop("start and end dates must be in ISO-1806 format")
-  if(!is.null(end)) if(!.is.date(end)) stop("start and end dates must be in ISO-1806 format")
+  if(!.is.date(start)) stop("start and end dates must be in ISO-1806 format")
+  if(!.is.date(end)) stop("start and end dates must be in ISO-1806 format")
 
-  base_url <- "https://api.open-meteo.com/v1/forecast"
+  base_url <- "https://archive-api.open-meteo.com/v1/archive"
   coordinates <- .coords_generic(location)
 
   # base queries
