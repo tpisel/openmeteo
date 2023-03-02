@@ -1,4 +1,88 @@
 
+# query the api
+.query_openmeteo <- function(
+    location,
+    start,
+    end,
+    hourly,
+    daily,
+    response_units,
+    model,
+    timezone,
+    base_url
+){
+  coordinates <- .coords_generic(location)
+
+  # base queries
+  queries <- list(
+    latitude = coordinates[1],
+    longitude = coordinates[2],
+    start_date = start,
+    end_date = end,
+    timezone = timezone
+  )
+
+  # add units/hourly/daily/model as supplied
+  queries <- c(queries,response_units)
+  if(!is.null(hourly)) {queries$hourly <- paste(hourly, collapse = ",")}
+  if(!is.null(daily)) {queries$daily <- paste(daily, collapse = ",")}
+  if(!is.null(model)) {queries$model <- paste(model, collapse = ",")}
+
+  # request (decode necessary as API treats ',' differently to '%2C')
+  pl <- httr::GET(utils::URLdecode(httr::modify_url(base_url, query = queries)))
+
+  # parse response
+  pl_parsed <- httr::content(pl, as = "parsed")
+
+  tz <- pl_parsed$timezone
+
+  export_both <- (!is.null(hourly)&!is.null(daily))
+
+  # parse hourly data
+  if(!is.null(pl_parsed$hourly)) {
+    hourly_tibble <-
+      pl_parsed$hourly |>
+      .nestedlist_as_tibble() |>
+      dplyr::rename_with( ~ paste0("hourly_", .x), .cols = -time) |>
+      dplyr::mutate(datetime = as.POSIXct(time, format = "%Y-%m-%dT%H:%M", tz = tz)) |>
+      dplyr::relocate(datetime, .before = time) |>
+      dplyr::select(-time)
+
+    if(!export_both) return(hourly_tibble)
+  }
+
+  # process daily data
+  if(!is.null(pl_parsed$daily)) {
+    daily_tibble <-
+      pl_parsed$daily |>
+      .nestedlist_as_tibble() |>
+      dplyr::rename_with( ~ paste0("daily_", .x), .cols = -time) |>
+      dplyr::mutate(date = as.Date(time, tz = tz)) |>
+      dplyr::relocate(date, .before = time) |>
+      dplyr::select(-time)
+
+    if(!export_both) return(daily_tibble)
+  }
+
+  # combine both hourly and daily if requested
+  if(export_both) {
+    d <-
+      daily_tibble |>
+      dplyr::mutate(date = as.character(date))
+
+    h <-
+      hourly_tibble |>
+      dplyr::mutate(date = as.character(datetime)) |>
+      dplyr::select(-datetime)
+
+    dh <-
+      dplyr::full_join(d, h, by = "date") |>
+      tidyr::separate(col = "date", sep = " ", fill = "right", into = c("date","time")) |>
+      dplyr::mutate(date = as.Date(date, tz = tz))
+
+    return(dh)
+  }
+}
 
 # check if x is of type c(lat,long)
 .is_coords <- function(x){

@@ -2,3 +2,6 @@
 
 export(geocode)
 export(weather_forecast)
+export(weather_history)
+export(weather_now)
+export(weather_variables)

@@ -124,3 +124,14 @@ test_spec <- tspec_df(
 # do we include the weather_variables() call?
 # test coverage checks
 
+
+
+
+location = "melbourne"
+start = NULL
+end = NULL
+hourly = c("temperature_2m","precipitation")
+daily = NULL
+response_units = NULL
+model = NULL
+timezone = "auto"

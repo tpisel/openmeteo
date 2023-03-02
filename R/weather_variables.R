@@ -43,7 +43,7 @@ weather_variables <- function() {
   pl <- httr::GET(url)
   .response_OK(pl)
 
-  yaml.load(httr::content(pl))
+  yaml::yaml.load(httr::content(pl))
 }
 
 .vars_from_schema <- function(params, name) {
