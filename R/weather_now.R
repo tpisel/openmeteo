@@ -19,18 +19,13 @@
 #' @examples
 #'
 #' # obtain temperature forecasts for London's next 7 days
-#' weather_forecast("London",hourly="temperature_2m")
+#' weather_forecast("London", hourly = "temperature_2m")
 #'
-
-
 # this is the same as the other one but you have
-
 weather_now <- function(
-  location,
-  response_units = NULL,
-  timezone = "auto"
-) {
-
+    location,
+    response_units = NULL,
+    timezone = "auto") {
   coordinates <- .coords_generic(location)
   base_url <- "https://api.open-meteo.com/v1/forecast"
 
@@ -43,7 +38,7 @@ weather_now <- function(
   )
 
   # add units as supplied
-  queries <- c(queries,response_units)
+  queries <- c(queries, response_units)
 
   # request (decode necessary as API treats ',' differently to '%2C')
   pl <- httr::GET(utils::URLdecode(httr::modify_url(base_url, query = queries)))
@@ -62,13 +57,4 @@ weather_now <- function(
     dplyr::relocate(datetime = time)
 
   current_tibble
-
 }
-
-
-
-
-
-
-
-

@@ -19,8 +19,6 @@
 #'
 #' weather_variables()
 #'
-
-
 weather_variables <- function() {
   base_url <- "https://raw.githubusercontent.com/open-meteo/open-meteo/main/"
 
@@ -48,13 +46,9 @@ weather_variables <- function() {
 
 .vars_from_schema <- function(params, name) {
   for (i in params) {
-    if(i$name == name) {
+    if (i$name == name) {
       return(i$schema$items$enum)
     }
   }
   stop("Unable to find variables from parsed YAML params")
 }
-
-
-
-

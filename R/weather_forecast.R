@@ -27,26 +27,23 @@
 #' @examples
 #'
 #' # obtain temperature forecasts for London's next 7 days
-#' weather_forecast("London",hourly="temperature_2m")
+#' weather_forecast("London", hourly = "temperature_2m")
 #'
-
 weather_forecast <- function(
-  location,
-  start = NULL,
-  end = NULL,
-  hourly = NULL,
-  daily = NULL,
-  response_units = NULL,
-  model = NULL,
-  timezone = "auto"
-  ){
-
+    location,
+    start = NULL,
+    end = NULL,
+    hourly = NULL,
+    daily = NULL,
+    response_units = NULL,
+    model = NULL,
+    timezone = "auto") {
   # validation
-  if(is.null(hourly) && is.null(daily)) stop("hourly or daily measure not supplied")
-  if(!is.null(start)) if(!.is.date(start)) stop("start and end dates must be in ISO-1806 format")
-  if(!is.null(end)) if(!.is.date(end)) stop("start and end dates must be in ISO-1806 format")
+  if (is.null(hourly) && is.null(daily)) stop("hourly or daily measure not supplied")
+  if (!is.null(start)) if (!.is.date(start)) stop("start and end dates must be in ISO-1806 format")
+  if (!is.null(end)) if (!.is.date(end)) stop("start and end dates must be in ISO-1806 format")
 
   base_url <- "https://api.open-meteo.com/v1/forecast"
 
-  .query_openmeteo(location,start,end,hourly,daily,response_units,model,timezone,base_url)
+  .query_openmeteo(location, start, end, hourly, daily, response_units, model, timezone, base_url)
 }

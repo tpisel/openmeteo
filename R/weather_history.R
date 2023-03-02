@@ -28,9 +28,8 @@
 #' @examples
 #'
 #' # obtain temperature forecasts for London's next 7 days
-#' weather_forecast("London",hourly="temperature_2m")
+#' weather_forecast("London", hourly = "temperature_2m")
 #'
-
 weather_history <- function(
     location,
     start,
@@ -39,19 +38,13 @@ weather_history <- function(
     daily = NULL,
     response_units = NULL,
     model = NULL,
-    timezone = "auto"
-){
-
+    timezone = "auto") {
   # validation
-  if(is.null(hourly) && is.null(daily)) stop("hourly or daily measure not supplied")
-  if(!.is.date(start)) stop("start and end dates must be in ISO-1806 format")
-  if(!.is.date(end)) stop("start and end dates must be in ISO-1806 format")
+  if (is.null(hourly) && is.null(daily)) stop("hourly or daily measure not supplied")
+  if (!.is.date(start)) stop("start and end dates must be in ISO-1806 format")
+  if (!.is.date(end)) stop("start and end dates must be in ISO-1806 format")
 
   base_url <- "https://archive-api.open-meteo.com/v1/archive"
 
-  .query_openmeteo(location,start,end,hourly,daily,response_units,model,timezone,base_url)
+  .query_openmeteo(location, start, end, hourly, daily, response_units, model, timezone, base_url)
 }
-
-
-
-

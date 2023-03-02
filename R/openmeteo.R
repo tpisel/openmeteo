@@ -28,6 +28,3 @@
 #' @name openmeteo
 NULL
 #>  NULL
-
-
-

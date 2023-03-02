@@ -16,7 +16,6 @@
 #' @examples
 #' dt <- geocode("Sydney")
 #' sydney_coords <- c(dt$latitude, dt$longitude)
-
 geocode <- function(location_string, n_results = 1, language = "en") {
   if (!is.character(location_string)) stop("location_string must be string")
   if (!is.numeric(n_results)) stop("n_results must be integer/numeric")

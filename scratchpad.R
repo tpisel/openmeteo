@@ -1,12 +1,9 @@
-
-
-
 # how much to abstract between the forecast or historical
 
 
 
 ## this is the old code we used to pull the historical weather data
-get_temps = function(city) {
+get_temps <- function(city) {
   coords <- geo(city = city, country = "Australia")
 
   base_url <- "https://archive-api.open-meteo.com/v1/archive"
@@ -17,7 +14,8 @@ get_temps = function(city) {
     start_date = min(datats$Week),
     end_date = max(datats$Week),
     daily = "temperature_2m_max",
-    timezone = "Australia/Sydney")
+    timezone = "Australia/Sydney"
+  )
 
   weather_data <- GET(modify_url(base_url, query = queries))
 
@@ -54,7 +52,7 @@ Sys.timezone()
 
 
 # when start and end are necessary
-if(!(.is.date(start) & .is.date(end))) stop("start and end dates must be in ISO-1806 format")
+if (!(.is.date(start) & .is.date(end))) stop("start and end dates must be in ISO-1806 format")
 
 
 
@@ -68,10 +66,10 @@ response <- GET(outputURL)
 
 
 
-#reporting on API call
-paste0("pinged url: ",outputURL," with response:",response$status)
+# reporting on API call
+paste0("pinged url: ", outputURL, " with response:", response$status)
 
-#duration
+# duration
 pl$times["total"]
 
 
@@ -127,11 +125,11 @@ test_spec <- tspec_df(
 
 
 
-location = "melbourne"
-start = NULL
-end = NULL
-hourly = c("temperature_2m","precipitation")
-daily = NULL
-response_units = NULL
-model = NULL
-timezone = "auto"
+location <- "melbourne"
+start <- NULL
+end <- NULL
+hourly <- c("temperature_2m", "precipitation")
+daily <- NULL
+response_units <- NULL
+model <- NULL
+timezone <- "auto"
