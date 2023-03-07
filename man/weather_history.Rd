@@ -2,7 +2,7 @@
 % Please edit documentation in R/weather_history.R
 \name{weather_history}
 \alias{weather_history}
-\title{Retrieve Historical Weather Data from the Open-Meteo Forecasting API}
+\title{Retrieve historical weather data from the Open-Meteo API}
 \usage{
 weather_history(
   location,
@@ -16,39 +16,77 @@ weather_history(
 )
 }
 \arguments{
-\item{location}{\code{c(latitude,longitude)} WGS84 coordinate pair or a place name (via a fuzzy search using \code{\link[=geocode]{geocode()}})}
+\item{location}{Required. The location for which data will be retrieved.
+Supplied as either a \code{c(latitude,longitude)} WGS84 coordinate pair or a
+place name string (with co-ordinates obtained via \code{\link[=geocode]{geocode()}}).}
 
-\item{start}{start date in ISO 8601 (e.g. "2020-12-30")}
+\item{start, end}{Required. Start and end dates in ISO 8601 (e.g.
+"2020-12-31").}
 
-\item{end}{end date in ISO 8601 (e.g. "2021-01-30")}
+\item{hourly, daily}{At least one required. A weather variable accepted by the
+API, or list thereof. See details below.}
 
-\item{hourly}{an hourly weather variable provided by the API, or list thereof}
+\item{response_units}{Supply to convert temperature, windspeed, or
+precipitation units. This defaults to: \verb{list(temperature_unit = "celsius",}
+\verb{windspeed_unit = "kmh", precipitation_unit = "mm")}}
 
-\item{daily}{a daily weather variable provided by the API, or list thereof}
+\item{model}{Supply to specify a model (or list of models) for forecasted
+values (defaults to autoselection of best model).}
 
-\item{response_units}{convert temperature, windspeed, or precipitation units, defaulting to:
-\code{c(temperature_unit = "celsius", windspeed_unit = "kmh", precipitation_unit = "mm")}}
-
-\item{model}{specify a model (or list of models) for forecasted values
-(defaults to autoselection of best model)}
-
-\item{timezone}{specify timezone of data (defaults to the timezone local to the specified \code{location})}
+\item{timezone}{specify timezone for time data as a string, i.e.
+"australia/sydney" (defaults to "auto", the timezone local to the specified
+\code{location}).}
 }
 \value{
-specified weather forecast data for the given location and time
+Specified weather forecast data for the given location and time
 }
 \description{
-\code{weather_history()} calls the Open-Meteo Historical Weather API for a given
-location. Location provided either as string or \code{c(latitude,longitude)}.
-Start and end dates must be provided.
+\code{weather_history()} calls the Open-Meteo Historical Weather API to obtain
+weather data for a given location and historical time period.
+}
+\details{
+You will need to specify at least one weather variable, such as temperature,
+that you want historical data for. These variables have been sampled or
+aggregated at \emph{hourly} or \emph{daily} intervals, and can be supplied as a list to
+request multiple variables over the same time period.
 
-Full API documentation is available at: \url{https://open-meteo.com/en/docs/historical-weather-api}.
-You can also call \code{\link[=weather_variables]{weather_variables()}} to retrieve a shortlist of valid hourly
-and daily weather variables.
+Example \emph{Hourly} historical weather variables include:\tabular{ll}{
+   \strong{Variable} \tab \strong{Description} \cr
+   \code{temperature_2m} \tab Air temperature at 2 meters above ground \cr
+   \code{precipitation} \tab Sum of rain, showers, and snow over the preceding hour \cr
+   \code{windspeed_10m} \tab Wind speed at 10 meters above ground \cr
+   \code{cloudcover} \tab Total cloud cover as an area fraction \cr
+   \code{pressure_msl} \tab Atmospheric air pressure at mean sea level \cr
+}
+
+
+Example \emph{Daily} historical weather variables include:\tabular{ll}{
+   \strong{Variable} \tab \strong{Description} \cr
+   \code{temperature_2m_max} \tab Maximum daily air temperature at 2 meters above ground \cr
+   \code{precipitation_sum} \tab Sum of rain, showers, and snow over the preceding day \cr
+   \code{windspeed_10m_max} \tab Maximum daily wind speed at 10 meters above ground \cr
+}
+
+
+Full documentation for the historical weather API is available at:
+\url{https://open-meteo.com/en/docs/historical-weather-api}
+
+You can also call \code{\link[=weather_variables]{weather_variables()}} to retrieve an (incomplete) shortlist
+of valid hourly and daily weather variables.
 }
 \examples{
+\dontrun{
+# obtain cloud cover history for London over 2020
+weather_history("London",
+                start = "2020-01-01",
+                end = "2021-12-31",
+                hourly = "cloudcover")
 
-# obtain temperature forecasts for London's next 7 days
-weather_forecast("London",hourly="temperature_2m")
-
+# compare a week ago's predicted precipitation with actual values, for Kyiv
+dt <- Sys.Date()-7
+predicted <- weather_forecast("kyiv",start = dt,end = dt,
+                              daily = "precipitation_sum")
+actual <- weather_history("kyiv",start = dt,end = dt,
+                          daily = "precipitation_sum")
+}
 }

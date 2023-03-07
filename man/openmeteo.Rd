@@ -3,32 +3,28 @@
 \docType{package}
 \name{openmeteo}
 \alias{openmeteo}
-\title{blsR: Retrieve Data From the U.S. Bureau Of Labor Statistics API // look at that file for reference, no code in it!}
+\title{openmeteo: retrieve weather data from the Open-Meteo API}
 \description{
-\code{blsR} provides functions for retrieving and processing data from the BLS API.
-The functions are divided into 5 categories: query generators, query requests,
-the spanning functions, result processors, and the user-friendly simplified
-interface.
-}
-\section{API Key and Definition}{
+\code{openmeteo} provides functions for accessing the Open-Meteo
+weather API, enabling the desired weather data or forecasts to be retrieved
+in a tidy data format. An API key is \emph{not} required to access the
+Open-Meteo API.
 
-
-The API key is an optional argument, but it is recommended you register for
-an API key and use it. Requests without a key are limited to 10 years of data
-per request, 25 series per query, and 25 queries per day. You can register at:
-\url{https://data.bls.gov/registrationEngine/}
-
-This implementation was based on the signatures available at:
-\url{https://www.bls.gov/developers/api_signature_v2.htm}
-
-The B.L.S. Frequently asked questions is available at:
-\url{https://www.bls.gov/developers/api_faqs.htm}
-}
-
-\section{General Workflow}{
-
-
-blah blah
-take a look at \code{\link[=geocode]{geocode()}}
+Open-Meteo provides several API endpoints. This package
+currently enables access to the \emph{Weather Forecast API}, the \emph{Historical
+Weather API}, and the \emph{Geocoding API} through the following functions:
+\itemize{
+\item \code{\link[=weather_forecast]{weather_forecast()}} - retrieve weather forecasts for a location
+\item \code{\link[=weather_history]{weather_history()}} - retrieve historical weather observations for a
+location
+\item \code{\link[=weather_now]{weather_now()}} - simple function to return current weather for a
+location
+\item \code{\link[=geocode]{geocode()}} - return the co-ordinates and other data for a location name
+\item \code{\link[=weather_variables]{weather_variables()}} - retrieve a shortlist of valid forecast or
+historical weather variables provided
 }
 
+Please review the API documentation at \url{https://open-meteo.com/} for
+details regarding the data available, its types, units, and other caveats
+and considerations.
+}

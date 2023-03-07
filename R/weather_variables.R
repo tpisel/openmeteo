@@ -1,32 +1,36 @@
-#' Retrieve a List of Weather Variables Accepted by the Open-Meteo Forecasting API
+#' Retrieve valid hourly and daily weather variables
 #'
 #' @description
 #'
-#' `weather_variables()` retrieves a list of  hourly and daily variables accepted
-#' by [weather_forecast()] and [weather_history()], such as temperature and precipitation.
+#' `weather_variables()` retrieves an incomplete list of _hourly_ and _daily_
+#' variables accepted by [weather_forecast()] and [weather_history()], such as
+#' temperature or precipitation.
 #'
 #' Refer to the following documentation for the forecast and history API
-#' endpoints for detailed descriptions, units, and caveats.
+#' endpoints for detailed descriptions, units, and caveats:
 #'
-#' Forecast: <https://open-meteo.com/en/docs>
-#' Historical: <https://open-meteo.com/en/docs/historical-weather-api>
+#' Forecast API <https://open-meteo.com/en/docs>
 #'
-#' @return a list of weather variables
+#' Historical API <https://open-meteo.com/en/docs/historical-weather-api>
+#'
+#' @return A list of valid hourly and daily weather variables
 #'
 #' @export
 #'
 #' @examples
-#'
+#' \dontrun{
 #' weather_variables()
-#'
+#' }
 weather_variables <- function() {
   base_url <- "https://raw.githubusercontent.com/open-meteo/open-meteo/main/"
 
   forecast_url <- paste0(base_url, "openapi.yml")
-  forecast_params <- .retrieve_om_schema(forecast_url)$paths$`/v1/forecast`$get$parameters
+  forecast_params <-
+    .retrieve_om_schema(forecast_url)$paths$`/v1/forecast`$get$parameters
 
   history_url <- paste0(base_url, "openapi_historical_weather_api.yml")
-  history_params <- .retrieve_om_schema(history_url)$paths$`/v1/archive`$get$parameters
+  history_params <-
+    .retrieve_om_schema(history_url)$paths$`/v1/archive`$get$parameters
 
   list(
     hourly_forecast_vars = .vars_from_schema(forecast_params, "hourly"),

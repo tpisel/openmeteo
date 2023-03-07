@@ -2,25 +2,46 @@
 % Please edit documentation in R/geocode.R
 \name{geocode}
 \alias{geocode}
-\title{Retrieve Data from the Open-Meteo Geocoding API}
+\title{Retrieve data from the Open-Meteo geocoding API}
 \usage{
-geocode(location_string, n_results = 1, language = "en")
+geocode(location_name, n_results = 1, language = "en", silent = TRUE)
 }
 \arguments{
-\item{location_string}{location name to search for via fuzzy matching}
+\item{location_name}{Required. The location name to search for via fuzzy
+matching.}
 
-\item{n_results}{number of locations provided in response (up to 100)}
+\item{n_results}{The number of matching locations provided in response,
+sorted by relevance (default 1, up to 100).}
 
-\item{language}{response language (lower-cased two-letter string)}
+\item{language}{Desired response language for place names (lower-cased
+two-letter string, i.e. "en" for \emph{London},"fr" for \emph{Londres}).}
+
+\item{silent}{If \code{FALSE}, the top match will be printed to the console, to
+aid in confirming the match is correct when used within other functions.}
 }
 \value{
-details for each location (latitude, longitude, elevation ...)
+Details for each matching location (latitude, longitude, elevation,
+population, timezone, and administrative areas)
 }
 \description{
-\code{geocode()} calls the Open-Meteo Geocoding API. API documentation is
-available at \url{https://open-meteo.com/en/docs/geocoding-api}
+Call the Open-Meteo Geocoding API to retrieve co-ordinates and other
+information for a given place name. The closest n matching records can be
+requested.
+
+Geocoding API documentation is available at
+\url{https://open-meteo.com/en/docs/geocoding-api}.
 }
 \examples{
-dt <- geocode("Sydney")
-sydney_coords <- c(dt$latitude, dt$longitude)
+\dontrun{
+# obtain co-ordinates of Sydney
+gc <- geocode("Sydney")
+sydney_coords <- c(gc$latitude, gc$longitude)
+
+# elevation of Kathmandu
+geocode("kathmandu")$elevation
+
+# 10 places named 'Paris'
+geocode("paris",10)
+}
+
 }

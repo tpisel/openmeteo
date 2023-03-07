@@ -7,25 +7,35 @@
 weather_now(location, response_units = NULL, timezone = "auto")
 }
 \arguments{
-\item{location}{\code{c(latitude,longitude)} WGS84 coordinate pair or a place name (via a fuzzy search using \code{\link[=geocode]{geocode()}})}
+\item{location}{Required. The location for which data will be retrieved.
+Supplied as either a \code{c(latitude,longitude)} WGS84 coordinate pair or a
+place name string (with co-ordinates obtained via \code{\link[=geocode]{geocode()}}).}
 
-\item{response_units}{convert temperature, windspeed, or precipitation units, defaulting to:
-\code{c(temperature_unit = "celsius", windspeed_unit = "kmh", precipitation_unit = "mm")}}
+\item{response_units}{Supply to convert temperature, windspeed, or
+precipitation units. This defaults to: \verb{list(temperature_unit = "celsius",}
+\verb{windspeed_unit = "kmh", precipitation_unit = "mm")}}
 
-\item{timezone}{specify timezone of data (defaults to the timezone local to the specified \code{location})}
+\item{timezone}{specify timezone for time data as a string, i.e.
+"australia/sydney" (defaults to "auto", the timezone local to the specified
+\code{location}).}
 }
 \value{
-Current weather conditions: temperature, windspeed, winddirection and weathercode
+Current weather conditions: temperature, windspeed, wind direction
+and weathercode.
 }
 \description{
-\code{weather_now()} calls the Open-Meteo Weather API to return current weather
-for a given location. Location provided either as string or \code{c(latitude,longitude)}.
-
-Full API documentation is available at: \url{https://open-meteo.com/en/docs}.
+\code{weather_now()} calls the Open-Meteo weather API for the most recently
+recorded weather conditions a given location. Location is provided either as
+string or \code{c(latitude,longitude)}.
 }
 \examples{
+\dontrun{
+# current weather in Montreal
+weather_now("Montreal")
 
-# obtain temperature forecasts for London's next 7 days
-weather_forecast("London",hourly="temperature_2m")
-
+# current weather at the North Pole in Imperial units
+weather_now(c(90,0),
+                 response_units = list(temperature_unit = "fahrenheit",
+                                       windspeed_unit = "mph"))
+}
 }

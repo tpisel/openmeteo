@@ -1,3 +1,4 @@
+
 test_that("co-ords validate", {
   expect_true(.is_coords(c(90, 180)))
   expect_true(.is_coords(c(-90, 0)))
@@ -24,4 +25,8 @@ test_that("ISO 8601 validation", {
   expect_false(.is.date("12-18-10"))
   expect_false(.is.date("12/18/10"))
   expect_false(.is.date(1231231))
+  expect_true(.is.date(as.Date("2010-12-18")))
+  expect_true(.is.date(Sys.Date()))
 })
+
+

@@ -2,25 +2,27 @@
 % Please edit documentation in R/weather_variables.R
 \name{weather_variables}
 \alias{weather_variables}
-\title{Retrieve a List of Weather Variables Accepted by the Open-Meteo Forecasting API}
+\title{Retrieve valid hourly and daily weather variables}
 \usage{
 weather_variables()
 }
 \value{
-a list of weather variables
+A list of valid hourly and daily weather variables
 }
 \description{
-\code{weather_variables()} retrieves a list of  hourly and daily variables accepted
-by \code{\link[=weather_forecast]{weather_forecast()}} and \code{\link[=weather_history]{weather_history()}}, such as temperature and precipitation.
+\code{weather_variables()} retrieves an incomplete list of \emph{hourly} and \emph{daily}
+variables accepted by \code{\link[=weather_forecast]{weather_forecast()}} and \code{\link[=weather_history]{weather_history()}}, such as
+temperature or precipitation.
 
 Refer to the following documentation for the forecast and history API
-endpoints for detailed descriptions, units, and caveats.
+endpoints for detailed descriptions, units, and caveats:
 
-Forecast: \url{https://open-meteo.com/en/docs}
-Historical: \url{https://open-meteo.com/en/docs/historical-weather-api}
+Forecast API \url{https://open-meteo.com/en/docs}
+
+Historical API \url{https://open-meteo.com/en/docs/historical-weather-api}
 }
 \examples{
-
+\dontrun{
 weather_variables()
-
+}
 }

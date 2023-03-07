@@ -11,6 +11,13 @@
     base_url) {
   coordinates <- .coords_generic(location)
 
+  # if 'auto', match the timezone clientside instead
+  if (timezone == "auto") {
+    timezone <- lutz::tz_lookup_coords(coordinates[1],
+                                       coordinates[2],
+                                       warn = FALSE)
+  }
+
   # base queries
   queries <- list(
     latitude = coordinates[1],
@@ -34,12 +41,15 @@
 
   # request (decode necessary as API treats ',' differently to '%2C')
   pl <- httr::GET(utils::URLdecode(httr::modify_url(base_url, query = queries)))
+  .response_OK(pl)
+
+  cat(httr::modify_url(base_url, query = queries))
 
   # parse response
   pl_parsed <- httr::content(pl, as = "parsed")
 
   tz <- pl_parsed$timezone
-
+  dtformat <- "%Y-%m-%dT%H:%M"
   export_both <- (!is.null(hourly) & !is.null(daily))
 
   # parse hourly data
@@ -48,7 +58,7 @@
       pl_parsed$hourly |>
       .nestedlist_as_tibble() |>
       dplyr::rename_with(~ paste0("hourly_", .x), .cols = -time) |>
-      dplyr::mutate(datetime = as.POSIXct(time, format = "%Y-%m-%dT%H:%M", tz = tz)) |>
+      dplyr::mutate(datetime = as.POSIXct(time, format = dtformat, tz = tz)) |>
       dplyr::relocate(datetime, .before = time) |>
       dplyr::select(-time)
 
@@ -85,12 +95,16 @@
 
     dh <-
       dplyr::full_join(d, h, by = "date") |>
-      tidyr::separate(col = "date", sep = " ", fill = "right", into = c("date", "time")) |>
+      tidyr::separate(col = "date",
+                      sep = " ",
+                      fill = "right",
+                      into = c("date", "time")) |>
       dplyr::mutate(date = as.Date(date, tz = tz))
 
     return(dh)
   }
 }
+
 
 # check if x is of type c(lat,long)
 .is_coords <- function(x) {
@@ -106,12 +120,13 @@
   if (.is_coords(x)) {
     return(x)
   } else if (is.character(x)) {
-    dt <- geocode(x)
+    dt <- geocode(x, silent = FALSE)
     return(c(dt$latitude, dt$longitude))
   } else {
     stop("location not provided as co-ordinate pair or string")
   }
 }
+
 
 # validate date reads as ISO 8601 (e.g. "2020-12-30")
 .is.date <- function(d) {
@@ -122,14 +137,21 @@
   )
 }
 
-
-# error if response not 200: OK
+# error helper to surface API feedback if possible
 .response_OK <- function(pl) {
-  if (pl$status != 200) stop(paste("API returned status code", pl$status))
+  if (pl$status != 200) {
+    error <- paste("API returned status code",pl$status)
+    try(if (httr::content(pl)$error) {
+      error <- paste0(error,"\nReason from API : ",httr::content(pl)$reason)
+    })
+    if (grepl("Cannot initialize ", error, fixed = TRUE)) {
+      error <- paste0(error,"\nNote : an invalid hourly or daily variable was",
+                      " likely requested, check the API docs")
+    }
+    stop(error)
+  }
+  TRUE
 }
-# revisit if want to use httr::http_error() per
-# https://httr.r-lib.org/articles/api-packages.html
-
 
 
 # turn the list-of-lists received into a tibble

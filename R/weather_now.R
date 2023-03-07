@@ -2,26 +2,27 @@
 #'
 #' @description
 #'
-#' `weather_now()` calls the Open-Meteo Weather API to return current weather
-#' for a given location. Location provided either as string or `c(latitude,longitude)`.
+#' `weather_now()` calls the Open-Meteo weather API for the most recently
+#' recorded weather conditions a given location. Location is provided either as
+#' string or `c(latitude,longitude)`.
 #'
-#' Full API documentation is available at: <https://open-meteo.com/en/docs>.
+#' @inheritParams weather_forecast
 #'
-#' @param location `c(latitude,longitude)` WGS84 coordinate pair or a place name (via a fuzzy search using [geocode()])
-#' @param response_units convert temperature, windspeed, or precipitation units, defaulting to:
-#' `c(temperature_unit = "celsius", windspeed_unit = "kmh", precipitation_unit = "mm")`
-#' @param timezone specify timezone of data (defaults to the timezone local to the specified `location`)
-#'
-#' @return Current weather conditions: temperature, windspeed, winddirection and weathercode
+#' @return Current weather conditions: temperature, windspeed, wind direction
+#'   and weathercode.
 #'
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # current weather in Montreal
+#' weather_now("Montreal")
 #'
-#' # obtain temperature forecasts for London's next 7 days
-#' weather_forecast("London", hourly = "temperature_2m")
-#'
-# this is the same as the other one but you have
+#' # current weather at the North Pole in Imperial units
+#' weather_now(c(90,0),
+#'                  response_units = list(temperature_unit = "fahrenheit",
+#'                                        windspeed_unit = "mph"))
+#' }
 weather_now <- function(
     location,
     response_units = NULL,
@@ -53,7 +54,9 @@ weather_now <- function(
   current_tibble <-
     pl_parsed$current_weather |>
     .nestedlist_as_tibble() |>
-    dplyr::mutate(time = as.POSIXct(time, format = "%Y-%m-%dT%H:%M", tz = tz)) |>
+    dplyr::mutate(time = as.POSIXct(time,
+                                    format = "%Y-%m-%dT%H:%M",
+                                    tz = tz)) |>
     dplyr::relocate(datetime = time)
 
   current_tibble

@@ -2,7 +2,7 @@
 % Please edit documentation in R/weather_forecast.R
 \name{weather_forecast}
 \alias{weather_forecast}
-\title{Retrieve Weather Forecasts from the Open-Meteo Forecasting API}
+\title{Retrieve weather forecasts from the Open-Meteo API}
 \usage{
 weather_forecast(
   location,
@@ -16,38 +16,79 @@ weather_forecast(
 )
 }
 \arguments{
-\item{location}{\code{c(latitude,longitude)} WGS84 coordinate pair or a place name (via a fuzzy search using \code{\link[=geocode]{geocode()}})}
+\item{location}{Required. The location for which data will be retrieved.
+Supplied as either a \code{c(latitude,longitude)} WGS84 coordinate pair or a
+place name string (with co-ordinates obtained via \code{\link[=geocode]{geocode()}}).}
 
-\item{start}{start date in ISO 8601 (e.g. "2020-12-30")}
+\item{start, end}{Start and end dates in ISO 8601 (e.g. "2020-12-31"). If no
+dates are supplied, data for the next 7 days will be provided by
+default.}
 
-\item{end}{end date in ISO 8601 (e.g. "2021-01-30")}
+\item{hourly, daily}{At least one required. A weather variable accepted by the
+API, or list thereof. See details below.}
 
-\item{hourly}{an hourly weather variable provided by the API, or list thereof}
+\item{response_units}{Supply to convert temperature, windspeed, or
+precipitation units. This defaults to: \verb{list(temperature_unit = "celsius",}
+\verb{windspeed_unit = "kmh", precipitation_unit = "mm")}}
 
-\item{daily}{a daily weather variable provided by the API, or list thereof}
+\item{model}{Supply to specify a model (or list of models) for forecasted
+values (defaults to autoselection of best model).}
 
-\item{response_units}{convert temperature, windspeed, or precipitation units, defaulting to:
-\code{c(temperature_unit = "celsius", windspeed_unit = "kmh", precipitation_unit = "mm")}}
-
-\item{model}{specify a model (or list of models) for forecasted values
-(defaults to autoselection of best model)}
-
-\item{timezone}{specify timezone of data (defaults to the timezone local to the specified \code{location})}
+\item{timezone}{specify timezone for time data as a string, i.e.
+"australia/sydney" (defaults to "auto", the timezone local to the specified
+\code{location}).}
 }
 \value{
-specified weather forecast data for the given location and time
+Requested weather forecast data for the given location and time, as a
+tidy tibble.
 }
 \description{
-\code{weather_forecast()} calls the Open-Meteo Weather Forecast API for a given
-location. Location provided either as string or \code{c(latitude,longitude)}. The
-next 7 days will be provided if start and end days are not specified.
-Full API documentation is available at: \url{https://open-meteo.com/en/docs}.
-You can also call \code{\link[=weather_variables]{weather_variables()}} to retrieve a shortlist of valid hourly
-and daily weather variables.
+\code{weather_forecast()} calls the Open-Meteo Weather Forecast API to obtain
+meteorological forecasts for a given location.
+}
+\details{
+You will need to specify at least one weather variable, such as temperature,
+that you want forecasted data for. These variables are sampled or aggregated
+at \emph{hourly} or \emph{daily} intervals, and can be supplied as a list to request
+multiple variables over the same time period.
+
+Example \emph{Hourly} forecast variables include:\tabular{ll}{
+   \strong{Variable} \tab \strong{Description} \cr
+   \code{temperature_2m} \tab Air temperature at 2 meters above ground \cr
+   \code{precipitation} \tab Sum of rain, showers, and snow over the preceding hour \cr
+   \code{windspeed_10m} \tab Wind speed at 10 meters above ground \cr
+   \code{cloudcover} \tab Total cloud cover as an area fraction \cr
+   \code{pressure_msl} \tab Atmospheric air pressure at mean sea level \cr
+}
+
+
+Example \emph{Daily} forecast variables include:\tabular{ll}{
+   \strong{Variable} \tab \strong{Description} \cr
+   \code{temperature_2m_max} \tab Maximum daily air temperature at 2 meters above ground \cr
+   \code{precipitation_sum} \tab Sum of rain, showers, and snow over the preceding day \cr
+   \code{windspeed_10m_max} \tab Maximum daily wind speed at 10 meters above ground \cr
+}
+
+
+Full documentation for the forecast API is available at:
+\url{https://open-meteo.com/en/docs}
+
+You can also call \code{\link[=weather_variables]{weather_variables()}} to retrieve an (incomplete) shortlist
+of valid hourly and daily weather variables.
 }
 \examples{
+\dontrun{
+# obtain temperature forecasts for the South Pole's next 7 days
+weather_forecast(c(-90,0), hourly = "temperature_2m")
 
-# obtain temperature forecasts for London's next 7 days
-weather_forecast("London",hourly="temperature_2m")
+# obtain temperature and precipitation forecasts for NYC in Imperial units
+weather_forecast("nyc",
+                 hourly = c("temperature_2m","precipitation"),
+                 response_units = list(temperature_unit = "fahrenheit",
+                                       precipitation_unit = "inch"))
 
+# will it rain tomorrow in Jakarta?
+tomorrow <- Sys.Date()+1
+weather_forecast("jakarta", tomorrow, tomorrow, daily = "precipitation_sum")
+}
 }

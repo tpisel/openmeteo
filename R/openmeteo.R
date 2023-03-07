@@ -1,28 +1,26 @@
-#' @title blsR: Retrieve Data From the U.S. Bureau Of Labor Statistics API // look at that file for reference, no code in it!
+#' @title openmeteo: retrieve weather data from the Open-Meteo API
 #'
-#' @description
-#' `blsR` provides functions for retrieving and processing data from the BLS API.
-#' The functions are divided into 5 categories: query generators, query requests,
-#' the spanning functions, result processors, and the user-friendly simplified
-#' interface.
+#' @description `openmeteo` provides functions for accessing the Open-Meteo
+#'   weather API, enabling the desired weather data or forecasts to be retrieved
+#'   in a tidy data format. An API key is _not_ required to access the
+#'   Open-Meteo API.
 #'
-#' @section API Key and Definition:
+#'   Open-Meteo provides several API endpoints. This package
+#'   currently enables access to the _Weather Forecast API_, the _Historical
+#'   Weather API_, and the _Geocoding API_ through the following functions:
 #'
-#' The API key is an optional argument, but it is recommended you register for
-#' an API key and use it. Requests without a key are limited to 10 years of data
-#' per request, 25 series per query, and 25 queries per day. You can register at:
-#'  <https://data.bls.gov/registrationEngine/>
+#'   - [weather_forecast()] - retrieve weather forecasts for a location
+#'   - [weather_history()] - retrieve historical weather observations for a
+#'   location
+#'   - [weather_now()] - simple function to return current weather for a
+#'   location
+#'   - [geocode()] - return the co-ordinates and other data for a location name
+#'   - [weather_variables()] - retrieve a shortlist of valid forecast or
+#'   historical weather variables provided
 #'
-#' This implementation was based on the signatures available at:
-#' <https://www.bls.gov/developers/api_signature_v2.htm>
-#'
-#' The B.L.S. Frequently asked questions is available at:
-#'  <https://www.bls.gov/developers/api_faqs.htm>
-#'
-#' @section General Workflow:
-#'
-#' blah blah
-#' take a look at [geocode()]
+#'   Please review the API documentation at <https://open-meteo.com/> for
+#'   details regarding the data available, its types, units, and other caveats
+#'   and considerations.
 #'
 #' @docType package
 #' @name openmeteo
