@@ -47,7 +47,7 @@
 #' @param response_units Supply to convert temperature, windspeed, or
 #'   precipitation units. This defaults to: `list(temperature_unit = "celsius",`
 #'   `windspeed_unit = "kmh", precipitation_unit = "mm")`
-#' @param model Supply to specify a model (or list of models) for forecasted
+#' @param model Supply to specify a model for forecasted
 #'   values (defaults to autoselection of best model).
 #' @param timezone specify timezone for time data as a string, i.e.
 #'   "australia/sydney" (defaults to "auto", the timezone local to the specified

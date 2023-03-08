@@ -40,6 +40,7 @@
 #'
 #' @param start,end Required. Start and end dates in ISO 8601 (e.g.
 #'   "2020-12-31").
+#' @param model Supply to specify a model for re-analysis.
 #'
 #' @return Specified weather forecast data for the given location and time
 #'

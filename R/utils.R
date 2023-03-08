@@ -10,13 +10,7 @@
     timezone,
     base_url) {
   coordinates <- .coords_generic(location)
-
-  # if 'auto', match the timezone clientside instead
-  if (timezone == "auto") {
-    timezone <- lutz::tz_lookup_coords(coordinates[1],
-                                       coordinates[2],
-                                       warn = FALSE)
-  }
+  timezone <- .autotz(timezone,coordinates)
 
   # base queries
   queries <- list(
@@ -36,14 +30,15 @@
     queries$daily <- paste(daily, collapse = ",")
   }
   if (!is.null(model)) {
+    if(length(model)!=1) {
+      stop("Please specify only one model per query.") # may support later
+    }
     queries$model <- paste(model, collapse = ",")
   }
 
   # request (decode necessary as API treats ',' differently to '%2C')
   pl <- httr::GET(utils::URLdecode(httr::modify_url(base_url, query = queries)))
   .response_OK(pl)
-
-  cat(httr::modify_url(base_url, query = queries))
 
   # parse response
   pl_parsed <- httr::content(pl, as = "parsed")
@@ -145,8 +140,8 @@
       error <- paste0(error,"\nReason from API : ",httr::content(pl)$reason)
     })
     if (grepl("Cannot initialize ", error, fixed = TRUE)) {
-      error <- paste0(error,"\nNote : an invalid hourly or daily variable was",
-                      " likely requested, check the API docs")
+      error <- paste0(error,"\nNote : an invalid variable (e.g. hourly, daily,",
+                      " units) was likely requested, check the API docs")
     }
     stop(error)
   }
@@ -159,4 +154,14 @@
   nl |>
     tibble::as_tibble() |>
     tidyr::unnest(cols = tidyr::everything())
+}
+
+# if 'auto', match the timezone client-side instead
+.autotz <- function(timezone,coordinates) {
+  if (timezone == "auto") {
+    timezone <- lutz::tz_lookup_coords(coordinates[1],
+                                       coordinates[2],
+                                       warn = FALSE)
+  }
+  timezone
 }

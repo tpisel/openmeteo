@@ -28,6 +28,7 @@ weather_now <- function(
     response_units = NULL,
     timezone = "auto") {
   coordinates <- .coords_generic(location)
+  timezone <- .autotz(timezone,coordinates)
   base_url <- "https://api.open-meteo.com/v1/forecast"
 
   # base queries
@@ -43,6 +44,7 @@ weather_now <- function(
 
   # request (decode necessary as API treats ',' differently to '%2C')
   pl <- httr::GET(utils::URLdecode(httr::modify_url(base_url, query = queries)))
+  .response_OK(pl)
 
   # parse response
   pl_parsed <- httr::content(pl, as = "parsed")

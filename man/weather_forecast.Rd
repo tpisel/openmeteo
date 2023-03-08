@@ -31,7 +31,7 @@ API, or list thereof. See details below.}
 precipitation units. This defaults to: \verb{list(temperature_unit = "celsius",}
 \verb{windspeed_unit = "kmh", precipitation_unit = "mm")}}
 
-\item{model}{Supply to specify a model (or list of models) for forecasted
+\item{model}{Supply to specify a model for forecasted
 values (defaults to autoselection of best model).}
 
 \item{timezone}{specify timezone for time data as a string, i.e.
