@@ -60,7 +60,7 @@ geocode <- function(location_name,
 
   out <- tibblify::tibblify(httr::content(pl, as = "parsed")$results)
 
-  if (!silent) {
+  if (!silent&&!testthat::is_testing()) {
     l <- dplyr::slice_head(out)
     m <- paste0("`geocode()` has matched \"",location_name,"\" to:\n",
                 l$name," ","in ",l$admin1,", ",l$country,"\n",

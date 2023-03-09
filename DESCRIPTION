@@ -16,8 +16,8 @@ Imports:
     tibblify,
     dplyr,
     yaml,
-    lutz
-Suggests: 
-    httptest,
+    lutz,
     testthat (>= 3.0.0)
+Suggests: 
+    httptest
 Config/testthat/edition: 3

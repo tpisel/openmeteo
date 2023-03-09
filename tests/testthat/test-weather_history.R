@@ -11,7 +11,7 @@ with_mock_api({
                                   hourly = "temperature_2m"),
                  "start and end dates must be")
     expect_error(weather_history(c(52.52437, 13.41053),
-                                  Sys.Date(),
+                                 "2023-03-09",
                                   100,
                                   hourly = "temperature_2m"),
                  "start and end dates must be")

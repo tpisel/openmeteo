@@ -2,8 +2,8 @@ with_mock_api({
   test_that("API queries correctly", {
     loc1 <- c(-12.46113, 130.84184)
     loc2 <- "Paris"
-    d1 <- Sys.Date() - 70
-    d2 <- Sys.Date() - 60
+    d1 <- "2022-12-29"
+    d2 <- "2023-01-08"
     forecast <- weather_forecast(loc1,d1,d2,daily = "temperature_2m_max")
     history <- weather_history(loc2,d1,d2,daily = "temperature_2m_max")
     hist_hourly <- weather_history(loc1,d1,d1,hourly = "temperature_2m")
@@ -62,7 +62,7 @@ with_mock_api({
     expect_false(.is.date("12/18/10"))
     expect_false(.is.date(1231231))
     expect_true(.is.date(as.Date("2010-12-18")))
-    expect_true(.is.date(Sys.Date()))
+    expect_true(.is.date("2023-03-09"))
   })
 })
 

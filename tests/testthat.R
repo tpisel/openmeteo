@@ -7,6 +7,7 @@
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
 library(testthat)
+library(httptest)
 library(openmeteo)
 
 test_check("openmeteo")
