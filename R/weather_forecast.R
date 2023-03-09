@@ -59,7 +59,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # obtain temperature forecasts for the South Pole's next 7 days
 #' weather_forecast(c(-90, 0), hourly = "temperature_2m")
 #'

@@ -24,10 +24,11 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # obtain co-ordinates of Sydney
 #' gc <- geocode("Sydney")
 #' sydney_coords <- c(gc$latitude, gc$longitude)
+#' sydney_coords
 #'
 #' # elevation of Kathmandu
 #' geocode("kathmandu")$elevation
@@ -35,7 +36,6 @@
 #' # 10 places named 'Paris'
 #' geocode("paris", 10)
 #' }
-#'
 geocode <- function(location_name,
                     n_results = 1,
                     language = "en",

@@ -22,7 +22,7 @@ Forecast API \url{https://open-meteo.com/en/docs}
 Historical API \url{https://open-meteo.com/en/docs/historical-weather-api}
 }
 \examples{
-\dontrun{
+\donttest{
 weather_variables()
 }
 }

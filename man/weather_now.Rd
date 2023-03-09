@@ -29,13 +29,16 @@ recorded weather conditions a given location. Location is provided either as
 string or \code{c(latitude,longitude)}.
 }
 \examples{
-\dontrun{
+\donttest{
 # current weather in Montreal
 weather_now("Montreal")
 
 # current weather at the North Pole in Imperial units
-weather_now(c(90,0),
-                 response_units = list(temperature_unit = "fahrenheit",
-                                       windspeed_unit = "mph"))
+weather_now(c(90, 0),
+  response_units = list(
+    temperature_unit = "fahrenheit",
+    windspeed_unit = "mph"
+  )
+)
 }
 }

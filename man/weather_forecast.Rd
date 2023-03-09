@@ -77,18 +77,21 @@ You can also call \code{\link[=weather_variables]{weather_variables()}} to retri
 of valid hourly and daily weather variables.
 }
 \examples{
-\dontrun{
+\donttest{
 # obtain temperature forecasts for the South Pole's next 7 days
-weather_forecast(c(-90,0), hourly = "temperature_2m")
+weather_forecast(c(-90, 0), hourly = "temperature_2m")
 
 # obtain temperature and precipitation forecasts for NYC in Imperial units
 weather_forecast("nyc",
-                 hourly = c("temperature_2m","precipitation"),
-                 response_units = list(temperature_unit = "fahrenheit",
-                                       precipitation_unit = "inch"))
+  hourly = c("temperature_2m", "precipitation"),
+  response_units = list(
+    temperature_unit = "fahrenheit",
+    precipitation_unit = "inch"
+  )
+)
 
 # will it rain tomorrow in Jakarta?
-tomorrow <- Sys.Date()+1
+tomorrow <- Sys.Date() + 1
 weather_forecast("jakarta", tomorrow, tomorrow, daily = "precipitation_sum")
 }
 }

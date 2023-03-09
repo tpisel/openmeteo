@@ -14,7 +14,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # current weather in Montreal
 #' weather_now("Montreal")
 #'

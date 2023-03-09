@@ -18,7 +18,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' weather_variables()
 #' }
 weather_variables <- function() {

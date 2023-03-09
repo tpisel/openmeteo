@@ -74,18 +74,12 @@ You can also call \code{\link[=weather_variables]{weather_variables()}} to retri
 of valid hourly and daily weather variables.
 }
 \examples{
-\dontrun{
+\donttest{
 # obtain cloud cover history for London over 2020
 weather_history("London",
-                start = "2020-01-01",
-                end = "2021-12-31",
-                hourly = "cloudcover")
-
-# compare a week ago's predicted precipitation with actual values, for Kyiv
-dt <- Sys.Date()-7
-predicted <- weather_forecast("kyiv",start = dt,end = dt,
-                              daily = "precipitation_sum")
-actual <- weather_history("kyiv",start = dt,end = dt,
-                          daily = "precipitation_sum")
+  start = "2020-01-01",
+  end = "2021-12-31",
+  hourly = "cloudcover"
+)
 }
 }
