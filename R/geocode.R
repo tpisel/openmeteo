@@ -33,8 +33,8 @@
 #' geocode("kathmandu")$elevation
 #'
 #' # 10 places named 'Paris'
-#' geocode("paris",10)
-#'}
+#' geocode("paris", 10)
+#' }
 #'
 geocode <- function(location_name,
                     n_results = 1,
@@ -60,12 +60,14 @@ geocode <- function(location_name,
 
   out <- tibblify::tibblify(httr::content(pl, as = "parsed")$results)
 
-  if (!silent&&!testthat::is_testing()) {
+  if (!silent && !testthat::is_testing()) {
     l <- dplyr::slice_head(out)
-    m <- paste0("`geocode()` has matched \"",location_name,"\" to:\n",
-                l$name," ","in ",l$admin1,", ",l$country,"\n",
-                "Population: ",l$population,"\n",
-                "Co-ordinates: c(",l$latitude,", ",l$longitude,")\n\n")
+    m <- paste0(
+      "`geocode()` has matched \"", location_name, "\" to:\n",
+      l$name, " ", "in ", l$admin1, ", ", l$country, "\n",
+      "Population: ", l$population, "\n",
+      "Co-ordinates: c(", l$latitude, ", ", l$longitude, ")\n\n"
+    )
     cat(m)
   }
 

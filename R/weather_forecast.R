@@ -61,16 +61,19 @@
 #' @examples
 #' \dontrun{
 #' # obtain temperature forecasts for the South Pole's next 7 days
-#' weather_forecast(c(-90,0), hourly = "temperature_2m")
+#' weather_forecast(c(-90, 0), hourly = "temperature_2m")
 #'
 #' # obtain temperature and precipitation forecasts for NYC in Imperial units
 #' weather_forecast("nyc",
-#'                  hourly = c("temperature_2m","precipitation"),
-#'                  response_units = list(temperature_unit = "fahrenheit",
-#'                                        precipitation_unit = "inch"))
+#'   hourly = c("temperature_2m", "precipitation"),
+#'   response_units = list(
+#'     temperature_unit = "fahrenheit",
+#'     precipitation_unit = "inch"
+#'   )
+#' )
 #'
 #' # will it rain tomorrow in Jakarta?
-#' tomorrow <- Sys.Date()+1
+#' tomorrow <- Sys.Date() + 1
 #' weather_forecast("jakarta", tomorrow, tomorrow, daily = "precipitation_sum")
 #' }
 weather_forecast <- function(
@@ -85,7 +88,7 @@ weather_forecast <- function(
   # validation
   if (is.null(hourly) && is.null(daily)) {
     stop("hourly or daily measure not supplied")
-    }
+  }
   if (!is.null(start) && !.is.date(start)) {
     stop("start and end dates must be in ISO-1806 format")
   }
@@ -95,11 +98,13 @@ weather_forecast <- function(
 
   base_url <- "https://api.open-meteo.com/v1/forecast"
 
-  .query_openmeteo(location,
-                   start, end,
-                   hourly, daily,
-                   response_units,
-                   model,
-                   timezone,
-                   base_url)
+  .query_openmeteo(
+    location,
+    start, end,
+    hourly, daily,
+    response_units,
+    model,
+    timezone,
+    base_url
+  )
 }

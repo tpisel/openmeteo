@@ -19,16 +19,19 @@
 #' weather_now("Montreal")
 #'
 #' # current weather at the North Pole in Imperial units
-#' weather_now(c(90,0),
-#'                  response_units = list(temperature_unit = "fahrenheit",
-#'                                        windspeed_unit = "mph"))
+#' weather_now(c(90, 0),
+#'   response_units = list(
+#'     temperature_unit = "fahrenheit",
+#'     windspeed_unit = "mph"
+#'   )
+#' )
 #' }
 weather_now <- function(
     location,
     response_units = NULL,
     timezone = "auto") {
   coordinates <- .coords_generic(location)
-  timezone <- .autotz(timezone,coordinates)
+  timezone <- .autotz(timezone, coordinates)
   base_url <- "https://api.open-meteo.com/v1/forecast"
 
   # base queries
@@ -57,8 +60,9 @@ weather_now <- function(
     pl_parsed$current_weather |>
     .nestedlist_as_tibble() |>
     dplyr::mutate(time = as.POSIXct(time,
-                                    format = "%Y-%m-%dT%H:%M",
-                                    tz = tz)) |>
+      format = "%Y-%m-%dT%H:%M",
+      tz = tz
+    )) |>
     dplyr::relocate(datetime = time)
 
   current_tibble

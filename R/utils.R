@@ -13,7 +13,7 @@ utils::globalVariables(c("time", "datetime"))
     timezone,
     base_url) {
   coordinates <- .coords_generic(location)
-  timezone <- .autotz(timezone,coordinates)
+  timezone <- .autotz(timezone, coordinates)
 
   # base queries
   queries <- list(
@@ -33,7 +33,7 @@ utils::globalVariables(c("time", "datetime"))
     queries$daily <- paste(daily, collapse = ",")
   }
   if (!is.null(model)) {
-    if(length(model)!=1) {
+    if (length(model) != 1) {
       stop("Please specify only one model per query.") # may support later
     }
     queries$model <- paste(model, collapse = ",")
@@ -93,10 +93,12 @@ utils::globalVariables(c("time", "datetime"))
 
     dh <-
       dplyr::full_join(d, h, by = "date") |>
-      tidyr::separate(col = "date",
-                      sep = " ",
-                      fill = "right",
-                      into = c("date", "time")) |>
+      tidyr::separate(
+        col = "date",
+        sep = " ",
+        fill = "right",
+        into = c("date", "time")
+      ) |>
       dplyr::mutate(date = as.Date(date, tz = tz))
 
     return(dh)
@@ -138,13 +140,15 @@ utils::globalVariables(c("time", "datetime"))
 # error helper to surface API feedback if possible
 .response_OK <- function(pl) {
   if (pl$status != 200) {
-    error <- paste("API returned status code",pl$status)
+    error <- paste("API returned status code", pl$status)
     try(if (httr::content(pl)$error) {
-      error <- paste0(error,"\nReason from API : ",httr::content(pl)$reason)
+      error <- paste0(error, "\nReason from API : ", httr::content(pl)$reason)
     })
     if (grepl("Cannot initialize ", error, fixed = TRUE)) {
-      error <- paste0(error,"\nNote : an invalid variable (e.g. hourly, daily,",
-                      " units) was likely requested, check the API docs")
+      error <- paste0(
+        error, "\nNote : an invalid variable (e.g. hourly, daily,",
+        " units) was likely requested, check the API docs"
+      )
     }
     stop(error)
   }
@@ -160,11 +164,12 @@ utils::globalVariables(c("time", "datetime"))
 }
 
 # if 'auto', match the timezone client-side instead
-.autotz <- function(timezone,coordinates) {
+.autotz <- function(timezone, coordinates) {
   if (timezone == "auto") {
     timezone <- lutz::tz_lookup_coords(coordinates[1],
-                                       coordinates[2],
-                                       warn = FALSE)
+      coordinates[2],
+      warn = FALSE
+    )
   }
   timezone
 }

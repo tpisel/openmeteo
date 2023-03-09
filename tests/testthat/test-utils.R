@@ -4,34 +4,40 @@ with_mock_api({
     loc2 <- "Paris"
     d1 <- "2022-12-29"
     d2 <- "2023-01-08"
-    forecast <- weather_forecast(loc1,d1,d2,daily = "temperature_2m_max")
-    history <- weather_history(loc2,d1,d2,daily = "temperature_2m_max")
-    hist_hourly <- weather_history(loc1,d1,d1,hourly = "temperature_2m")
-    hist_both <- weather_history(loc2,d1,d1,
-                                 hourly = "temperature_2m",
-                                 daily = "temperature_2m_max")
+    forecast <- weather_forecast(loc1, d1, d2, daily = "temperature_2m_max")
+    history <- weather_history(loc2, d1, d2, daily = "temperature_2m_max")
+    hist_hourly <- weather_history(loc1, d1, d1, hourly = "temperature_2m")
+    hist_both <- weather_history(loc2, d1, d1,
+      hourly = "temperature_2m",
+      daily = "temperature_2m_max"
+    )
     fore_model <- weather_forecast(loc2,
-                                   hourly = "temperature_2m",
-                                   model = "gem_global")
+      hourly = "temperature_2m",
+      model = "gem_global"
+    )
 
-    expect_true(dim(history)[1]>10)
-    expect_true(dim(history)[2]==2)
-    expect_true(dim(forecast)[1]>10)
-    expect_true(dim(forecast)[2]==2)
-    expect_true(dim(hist_hourly)[1]>10)
-    expect_true(dim(hist_hourly)[2]==2)
-    expect_true(dim(hist_both)[1]>10)
-    expect_true(dim(hist_both)[2]==4)
-    expect_true(dim(fore_model)[1]>10)
-    expect_true(dim(fore_model)[2]==2)
+    expect_true(dim(history)[1] > 10)
+    expect_true(dim(history)[2] == 2)
+    expect_true(dim(forecast)[1] > 10)
+    expect_true(dim(forecast)[2] == 2)
+    expect_true(dim(hist_hourly)[1] > 10)
+    expect_true(dim(hist_hourly)[2] == 2)
+    expect_true(dim(hist_both)[1] > 10)
+    expect_true(dim(hist_both)[2] == 4)
+    expect_true(dim(fore_model)[1] > 10)
+    expect_true(dim(fore_model)[2] == 2)
   })
 
   test_that("invalid api queries", {
-    expect_error(weather_forecast("paris"),"hourly or daily")
+    expect_error(weather_forecast("paris"), "hourly or daily")
     expect_error(weather_forecast("milan", hourly = "lksdfj"), "invalid variable")
-    expect_error(weather_forecast("berlin", hourly = "temperature_2m",
-                                  model = c("icon_global","gem_global")),
-                 "one model")
+    expect_error(
+      weather_forecast("berlin",
+        hourly = "temperature_2m",
+        model = c("icon_global", "gem_global")
+      ),
+      "one model"
+    )
   })
 
   test_that("co-ords validate", {
@@ -51,8 +57,10 @@ with_mock_api({
     expect_equal(.coords_generic(c(90, 180)), c(90, 180))
     expect_equal(.coords_generic("Darwin"), c(-12.46113, 130.84184))
     expect_error(.coords_generic("sdflksdjflsdkjf"), "No matches found")
-    expect_error(.coords_generic(c(-10, -10)),
-                 "location not provided as co-ordinate pair or string")
+    expect_error(
+      .coords_generic(c(-10, -10)),
+      "location not provided as co-ordinate pair or string"
+    )
   })
 
   test_that("ISO 8601 validation", {
@@ -64,6 +72,3 @@ with_mock_api({
     expect_true(.is.date("2023-03-09"))
   })
 })
-
-
-

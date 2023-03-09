@@ -50,16 +50,21 @@
 #' \dontrun{
 #' # obtain cloud cover history for London over 2020
 #' weather_history("London",
-#'                 start = "2020-01-01",
-#'                 end = "2021-12-31",
-#'                 hourly = "cloudcover")
+#'   start = "2020-01-01",
+#'   end = "2021-12-31",
+#'   hourly = "cloudcover"
+#' )
 #'
 #' # compare a week ago's predicted precipitation with actual values, for Kyiv
-#' dt <- Sys.Date()-7
-#' predicted <- weather_forecast("kyiv",start = dt,end = dt,
-#'                               daily = "precipitation_sum")
-#' actual <- weather_history("kyiv",start = dt,end = dt,
-#'                           daily = "precipitation_sum")
+#' dt <- Sys.Date() - 7
+#' predicted <- weather_forecast("kyiv",
+#'   start = dt, end = dt,
+#'   daily = "precipitation_sum"
+#' )
+#' actual <- weather_history("kyiv",
+#'   start = dt, end = dt,
+#'   daily = "precipitation_sum"
+#' )
 #' }
 weather_history <- function(
     location,
@@ -83,11 +88,13 @@ weather_history <- function(
 
   base_url <- "https://archive-api.open-meteo.com/v1/archive"
 
-  .query_openmeteo(location,
-                   start, end,
-                   hourly, daily,
-                   response_units,
-                   model,
-                   timezone,
-                   base_url)
+  .query_openmeteo(
+    location,
+    start, end,
+    hourly, daily,
+    response_units,
+    model,
+    timezone,
+    base_url
+  )
 }
