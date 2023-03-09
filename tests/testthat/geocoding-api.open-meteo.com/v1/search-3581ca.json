@@ -1,0 +1,20 @@
+{
+    "results": [
+        {
+            "id": 2147714,
+            "name": "Sydney",
+            "latitude": -33.86785,
+            "longitude": 151.20732,
+            "elevation": 58.0,
+            "feature_code": "PPLA",
+            "country_code": "AU",
+            "admin1_id": 2155400,
+            "timezone": "Australia/Sydney",
+            "population": 4627345,
+            "country_id": 2077456,
+            "country": "Australia",
+            "admin1": "New South Wales"
+        }
+    ],
+    "generationtime_ms": 0.6430149
+}

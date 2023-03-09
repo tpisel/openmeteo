@@ -18,5 +18,6 @@ Imports:
     yaml,
     lutz
 Suggests: 
+    httptest,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

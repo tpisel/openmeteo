@@ -1,12 +1,12 @@
 # openmeteo
 _An Open Meteo SDK for R_
 
-Please install with `install_github("tpisel/openmeteo")`
-
 `openmeteo` provides functions for accessing the Open-Meteo
 weather API, enabling the desired weather data or forecasts to be retrieved
 in a tidy data format. An API key is _not_ required to access the
 Open-Meteo API.
+
+Install with: `install.packages("openmeteo")`
 
 Open-Meteo provides several API endpoints. This package
 currently enables access to the _Weather Forecast API_, the _Historical
@@ -24,9 +24,6 @@ Please review the API documentation at [Open-Meteo.com](https://open-meteo.com/)
 details regarding the data available, its types, units, and other caveats
 and considerations.
 
-----
 
-As I intend to submit the package to CRAN (a first for me) any review/feedback
-is greatly appreciated.
 
 

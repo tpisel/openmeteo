@@ -1,0 +1,22 @@
+{
+    "results": [
+        {
+            "id": 2073124,
+            "name": "Darwin",
+            "latitude": -12.46113,
+            "longitude": 130.84184,
+            "elevation": 31.0,
+            "feature_code": "PPLA",
+            "country_code": "AU",
+            "admin1_id": 2064513,
+            "admin2_id": 7839402,
+            "timezone": "Australia/Darwin",
+            "population": 129062,
+            "country_id": 2077456,
+            "country": "Australia",
+            "admin1": "Northern Territory",
+            "admin2": "Darwin"
+        }
+    ],
+    "generationtime_ms": 0.5480051
+}

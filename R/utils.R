@@ -1,3 +1,6 @@
+# handle the quasiquoted dplyr columns being picked up in the check()
+utils::globalVariables(c("time", "datetime"))
+
 # query the api
 .query_openmeteo <- function(
     location,
