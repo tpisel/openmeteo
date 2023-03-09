@@ -1,6 +1,10 @@
 # openmeteo
 _An Open Meteo SDK for R_
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/tpisel/openmeteo/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tpisel/openmeteo/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 `openmeteo` provides functions for accessing the Open-Meteo
 weather API, enabling the desired weather data or forecasts to be retrieved
 in a tidy data format. An API key is _not_ required to access the

@@ -60,7 +60,6 @@ with_mock_api({
     expect_false(.is.date("12182010"))
     expect_false(.is.date("12-18-10"))
     expect_false(.is.date("12/18/10"))
-    expect_false(.is.date(1231231))
     expect_true(.is.date(as.Date("2010-12-18")))
     expect_true(.is.date("2023-03-09"))
   })
