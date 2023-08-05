@@ -1,11 +1,11 @@
 {
-    "latitude": 48.90001,
-    "longitude": 2.300003,
-    "generationtime_ms": 0.30303001403808594,
-    "utc_offset_seconds": 7200,
-    "timezone": "Europe/Paris",
-    "timezone_abbreviation": "CEST",
-    "elevation": 43.0,
+    "latitude": -12.5,
+    "longitude": -130.875,
+    "generationtime_ms": 4.148960113525391,
+    "utc_offset_seconds": -32400,
+    "timezone": "Etc/GMT+9",
+    "timezone_abbreviation": "-09",
+    "elevation": 0.0,
     "daily_units": {
         "time": "iso8601",
         "temperature_2m_max": "°C"
@@ -25,17 +25,17 @@
             "2023-01-08"
         ],
         "temperature_2m_max": [
-            11.9,
-            14.1,
-            15.9,
-            15.0,
-            14.7,
-            11.3,
-            12.9,
-            13.0,
-            13.3,
-            11.2,
-            10.5
+            25.3,
+            25.4,
+            26.1,
+            26.4,
+            26.6,
+            26.6,
+            26.2,
+            26.0,
+            26.1,
+            25.9,
+            25.7
         ]
     }
 }

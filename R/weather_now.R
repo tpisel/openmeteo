@@ -31,7 +31,6 @@ weather_now <- function(
     response_units = NULL,
     timezone = "auto") {
   coordinates <- .coords_generic(location)
-  timezone <- .autotz(timezone, coordinates)
   base_url <- "https://api.open-meteo.com/v1/forecast"
 
   # base queries

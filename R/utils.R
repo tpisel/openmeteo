@@ -13,7 +13,6 @@ utils::globalVariables(c("time", "datetime"))
     timezone,
     base_url) {
   coordinates <- .coords_generic(location)
-  timezone <- .autotz(timezone, coordinates)
 
   # base queries
   queries <- list(
@@ -109,7 +108,7 @@ utils::globalVariables(c("time", "datetime"))
 # check if x is of type c(lat,long)
 .is_coords <- function(x) {
   if (length(x) == 2 && is.numeric(x)) {
-    abs(x[1]) <= 90 && x[2] <= 180 && x[2] >= 0
+    abs(x[1]) <= 90 && abs(x[2]) <= 180 && abs(x[2]) >= 0
   } else {
     FALSE
   }
