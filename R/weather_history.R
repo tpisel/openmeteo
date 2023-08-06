@@ -5,6 +5,9 @@
 #' `weather_history()` calls the Open-Meteo Historical Weather API to obtain
 #' weather data for a given location and historical time period.
 #'
+#' Refer to the API documentation at:
+#' <https://open-meteo.com/en/docs/historical-weather-api>
+#'
 #' @details
 #'
 #' You will need to specify at least one weather variable, such as temperature,
