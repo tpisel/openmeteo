@@ -1,0 +1,22 @@
+{
+    "results": [
+        {
+            "id": 1816670,
+            "name": "Beijing",
+            "latitude": 39.9075,
+            "longitude": 116.39723,
+            "elevation": 49.0,
+            "feature_code": "PPLC",
+            "country_code": "CN",
+            "admin1_id": 2038349,
+            "admin2_id": 11876380,
+            "timezone": "Asia/Shanghai",
+            "population": 11716620,
+            "country_id": 1814991,
+            "country": "China",
+            "admin1": "Beijing",
+            "admin2": "Beijing"
+        }
+    ],
+    "generationtime_ms": 0.83601475
+}

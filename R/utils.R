@@ -162,13 +162,3 @@ utils::globalVariables(c("time", "datetime"))
     tidyr::unnest(cols = tidyr::everything())
 }
 
-# if 'auto', match the timezone client-side instead
-.autotz <- function(timezone, coordinates) {
-  if (timezone == "auto") {
-    timezone <- lutz::tz_lookup_coords(coordinates[1],
-      coordinates[2],
-      warn = FALSE
-    )
-  }
-  timezone
-}
