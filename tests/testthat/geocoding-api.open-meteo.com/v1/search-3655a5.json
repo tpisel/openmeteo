@@ -1,0 +1,22 @@
+{
+    "results": [
+        {
+            "id": 3469058,
+            "name": "Brasília",
+            "latitude": -15.77972,
+            "longitude": -47.92972,
+            "elevation": 1136.0,
+            "feature_code": "PPLC",
+            "country_code": "BR",
+            "admin1_id": 3463504,
+            "admin2_id": 6324222,
+            "timezone": "America/Sao_Paulo",
+            "population": 2207718,
+            "country_id": 3469034,
+            "country": "Brazil",
+            "admin1": "Federal District",
+            "admin2": "Brasília"
+        }
+    ],
+    "generationtime_ms": 0.55396557
+}

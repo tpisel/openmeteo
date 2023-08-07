@@ -1,11 +1,11 @@
 {
-    "latitude": -12.5,
-    "longitude": 130.875,
-    "generationtime_ms": 0.370025634765625,
-    "utc_offset_seconds": 32400,
-    "timezone": "Australia/Darwin",
-    "timezone_abbreviation": "ACST",
-    "elevation": 29.0,
+    "latitude": -15.799995,
+    "longitude": -47.899994,
+    "generationtime_ms": 4.088997840881348,
+    "utc_offset_seconds": -10800,
+    "timezone": "America/Sao_Paulo",
+    "timezone_abbreviation": "-03",
+    "elevation": 1134.0,
     "daily_units": {
         "time": "iso8601",
         "temperature_2m_max": "°C"
@@ -25,17 +25,17 @@
             "2023-01-08"
         ],
         "temperature_2m_max": [
-            29.3,
-            29.0,
-            28.2,
-            29.1,
-            28.7,
-            30.7,
-            29.3,
-            28.9,
-            28.9,
-            31.4,
-            31.5
+            26.4,
+            25.5,
+            25.8,
+            26.2,
+            27.0,
+            26.3,
+            25.2,
+            25.0,
+            22.8,
+            25.7,
+            23.5
         ]
     }
 }

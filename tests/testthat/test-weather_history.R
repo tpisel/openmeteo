@@ -1,6 +1,5 @@
 with_mock_api({
   test_that("need to provide weather variables", {
-    skip_on_cran()
     expect_error(
       weather_history(
         c(45.46427, 9.18951),

@@ -2,7 +2,7 @@
 % Please edit documentation in R/geocode.R
 \name{geocode}
 \alias{geocode}
-\title{Retrieve data from the Open-Meteo geocoding API}
+\title{Geocode a location using the Open-Meteo geocoding API}
 \usage{
 geocode(location_name, n_results = 1, language = "en", silent = TRUE)
 }
@@ -28,7 +28,7 @@ Call the Open-Meteo Geocoding API to retrieve co-ordinates and other
 information for a given place name. The closest n matching records can be
 requested.
 
-Geocoding API documentation is available at
+Geocoding API documentation is available at:
 \url{https://open-meteo.com/en/docs/geocoding-api}.
 }
 \examples{

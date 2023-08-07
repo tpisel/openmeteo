@@ -10,18 +10,26 @@ weather API, enabling the desired weather data or forecasts to be retrieved
 in a tidy data format. An API key is \emph{not} required to access the
 Open-Meteo API.
 
-Open-Meteo provides several API endpoints. This package
-currently enables access to the \emph{Weather Forecast API}, the \emph{Historical
-Weather API}, and the \emph{Geocoding API} through the following functions:
+Open-Meteo provides several API endpoints through the following functions:
+
+\strong{Core Weather APIs}
 \itemize{
 \item \code{\link[=weather_forecast]{weather_forecast()}} - retrieve weather forecasts for a location
 \item \code{\link[=weather_history]{weather_history()}} - retrieve historical weather observations for a
 location
 \item \code{\link[=weather_now]{weather_now()}} - simple function to return current weather for a
 location
-\item \code{\link[=geocode]{geocode()}} - return the co-ordinates and other data for a location name
 \item \code{\link[=weather_variables]{weather_variables()}} - retrieve a shortlist of valid forecast or
 historical weather variables provided
+}
+
+\strong{Other APIs}
+\itemize{
+\item \code{\link[=geocode]{geocode()}} - return the co-ordinates and other data for a location name
+\item \code{\link[=climate_forecast]{climate_forecast()}} - return long-range climate modelling for a location
+\item \code{\link[=river_discharge]{river_discharge()}} - return flow volumes for the nearest river
+\item \code{\link[=marine_forecast]{marine_forecast()}} - return ocean conditions data for a location
+\item \code{\link[=air_quality]{air_quality()}} - return air quality data for a location
 }
 
 Please review the API documentation at \url{https://open-meteo.com/} for

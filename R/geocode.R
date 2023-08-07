@@ -1,4 +1,4 @@
-#' Retrieve data from the Open-Meteo geocoding API
+#' Geocode a location using the Open-Meteo geocoding API
 #'
 #' @description
 #'
@@ -6,7 +6,7 @@
 #' information for a given place name. The closest n matching records can be
 #' requested.
 #'
-#' Geocoding API documentation is available at
+#' Geocoding API documentation is available at:
 #' <https://open-meteo.com/en/docs/geocoding-api>.
 #'
 #' @param location_name Required. The location name to search for via fuzzy

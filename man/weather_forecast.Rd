@@ -45,6 +45,8 @@ tidy tibble.
 \description{
 \code{weather_forecast()} calls the Open-Meteo Weather Forecast API to obtain
 meteorological forecasts for a given location.
+
+Refer to the API documentation at: \url{https://open-meteo.com/en/docs}
 }
 \details{
 You will need to specify at least one weather variable, such as temperature,
