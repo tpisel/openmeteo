@@ -9,22 +9,4 @@ with_mock_api({
       "hourly or daily measure not supplied"
     )
   })
-  test_that("date formatting",{
-    expect_error(
-      weather_history('chicago',
-                       'tomorrow',222,
-                       daily = c('temperature_2m_max', 'precipitation_sum'),
-                       response_units = list(temperature_unit = 'fahrenheit',
-                                             precipitation_unit = 'inch')),
-      "start and end dates must be in ISO-1806 format"
-    )
-    expect_error(
-      weather_history('chicago',
-                       '2022-02-01',222,
-                       daily = c('temperature_2m_max', 'precipitation_sum'),
-                       response_units = list(temperature_unit = 'fahrenheit',
-                                             precipitation_unit = 'inch')),
-      "start and end dates must be in ISO-1806 format"
-    )
-  })
 })

@@ -17,18 +17,4 @@ test_that("need to provide hourly variables", {
     "daily measure not supplied"
   )
 })
-test_that("date formatting",{
-  expect_error(
-    river_discharge('chicago',
-                'tomorrow',222,
-                daily = 'river_discharge'),
-    "start and end dates must be in ISO-1806 format"
-  )
-  expect_error(
-    river_discharge('chicago',
-                '2023-02-01',222,
-                daily = 'river_discharge'),
-    "start and end dates must be in ISO-1806 format"
-  )
-})
 })

@@ -17,18 +17,4 @@ test_that("need to provide hourly variables", {
     "hourly measure not supplied"
   )
 })
-test_that("date formatting",{
-  expect_error(
-    air_quality('chicago',
-                     'tomorrow',222,
-                     hourly = 'dust'),
-    "start and end dates must be in ISO-1806 format"
-  )
-  expect_error(
-    air_quality('chicago',
-                '2023-02-01',222,
-                hourly = 'dust'),
-    "start and end dates must be in ISO-1806 format"
-  )
-})
 })

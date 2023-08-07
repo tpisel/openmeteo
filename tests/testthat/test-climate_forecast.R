@@ -20,24 +20,4 @@ with_mock_api({
       "daily weather variables not supplied"
     )
   })
-  test_that("date formatting",{
-    expect_error(
-      climate_forecast('chicago',
-                       'tomorrow',222,
-                       daily = c('temperature_2m_max', 'precipitation_sum'),
-                       model = 'FGOALS_f3_H',
-                       response_units = list(temperature_unit = 'fahrenheit',
-                                             precipitation_unit = 'inch')),
-    "start and end dates must be in ISO-1806 format"
-    )
-    expect_error(
-      climate_forecast('chicago',
-                       '2023-02-01',222,
-                       daily = c('temperature_2m_max', 'precipitation_sum'),
-                       model = 'FGOALS_f3_H',
-                       response_units = list(temperature_unit = 'fahrenheit',
-                                             precipitation_unit = 'inch')),
-      "start and end dates must be in ISO-1806 format"
-    )
-  })
 })

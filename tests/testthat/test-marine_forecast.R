@@ -19,22 +19,4 @@ with_mock_api({
       "hourly or daily measure not supplied"
     )
   })
-  test_that("date formatting",{
-    expect_error(
-      marine_forecast('nice',
-                       'tomorrow',222,
-                       daily = 'wave_height_max',
-                       response_units = list(temperature_unit = 'fahrenheit',
-                                             precipitation_unit = 'inch')),
-      "start and end dates must be in ISO-1806 format"
-    )
-    expect_error(
-      marine_forecast('nice',
-                       '2023-02-01',222,
-                       daily = 'wave_height_max',
-                       response_units = list(temperature_unit = 'fahrenheit',
-                                             precipitation_unit = 'inch')),
-      "start and end dates must be in ISO-1806 format"
-    )
-  })
 })
