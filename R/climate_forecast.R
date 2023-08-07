@@ -61,17 +61,17 @@
 #' \donttest{
 #' # Obtain projected precipitation for the North Pole in 2050
 #' climate_forecast(c(90, 0),
-#'   '2050-06-01', '2050-07-01',
+#'   "2050-06-01", "2050-07-01",
 #'   daily = "precipitation_sum"
-#'   )
+#' )
 #'
 #' # Obtain projected temperatures for Madrid in 2050 in Fahrenheit, with ESMI1
 #' climate_forecast("Madrid",
-#'   '2050-06-01', '2050-07-01',
-#'   daily = 'temperature_2m_max',
-#'   model = 'MPI_ESM1_2_XR',
+#'   "2050-06-01", "2050-07-01",
+#'   daily = "temperature_2m_max",
+#'   model = "MPI_ESM1_2_XR",
 #'   response_units = list(temperature_unit = "fahrenheit")
-#'   )
+#' )
 #' }
 climate_forecast <- function(
     location,

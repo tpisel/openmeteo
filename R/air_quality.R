@@ -47,7 +47,7 @@
 #' @examples
 #' \donttest{
 #' # obtain Carbon Monoxide levels for Beijing over the next 5 days
-#' air_quality('Beijing', hourly = 'carbon_monoxide')
+#' air_quality("Beijing", hourly = "carbon_monoxide")
 #' }
 air_quality <- function(
     location,

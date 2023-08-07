@@ -161,4 +161,3 @@ utils::globalVariables(c("time", "datetime"))
     tibble::as_tibble() |>
     tidyr::unnest(cols = tidyr::everything())
 }
-

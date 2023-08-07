@@ -45,8 +45,10 @@
 #' @examples
 #' \donttest{
 #' # obtain historical flood data for Brisbane
-#' river_discharge('Brisbane',
-#'   '2022-01-01', '2022-02-01', daily = 'river_discharge')
+#' river_discharge("Brisbane",
+#'   "2022-01-01", "2022-02-01",
+#'   daily = "river_discharge"
+#' )
 #' }
 river_discharge <- function(
     location,
