@@ -46,8 +46,8 @@ request multiple variables over the same time period.
 
 Example hourly air quality variables include:\tabular{ll}{
    \strong{Variable} \tab \strong{Description} \cr
-   \code{pm10} \tab Particulate matter with diameter smaller than 10 µm \cr
-   \code{carbon_monoxide} \tab Concentration in μg/m³ 10m above surface \cr
+   \code{pm10} \tab Particulate matter smaller than 10 micrometers across \cr
+   \code{carbon_monoxide} \tab 10m concentration in micrograms per cubic meter \cr
    \code{european_aqi} \tab European Air Quality Index \cr
    \code{us_aqi} \tab United States Air Quality Index \cr
    \code{dust} \tab Saharan dust particles 10m above ground \cr
@@ -60,6 +60,6 @@ Full documentation for the forecast API is available at:
 \examples{
 \donttest{
 # obtain Carbon Monoxide levels for Beijing over the next 5 days
-air_quality('Beijing', hourly = 'carbon_monoxide')
+air_quality("Beijing", hourly = "carbon_monoxide")
 }
 }

@@ -19,8 +19,8 @@
 #'
 #' |**Variable**     |**Description**                                          |
 #' |-----------------|---------------------------------------------------------|
-#' |`pm10`           |Particulate matter with diameter smaller than 10 µm      |
-#' |`carbon_monoxide`|Concentration in μg/m³ 10m above surface                 |
+#' |`pm10`           |Particulate matter smaller than 10 micrometers across    |
+#' |`carbon_monoxide`|10m concentration in micrograms per cubic meter          |
 #' |`european_aqi`   |European Air Quality Index                               |
 #' |`us_aqi`         |United States Air Quality Index                          |
 #' |`dust`           |Saharan dust particles 10m above ground                  |

@@ -74,6 +74,6 @@ Full documentation for the marine API is available at:
 \examples{
 \donttest{
 # Obtain maximum wave heights in Nazare, Portugal, over the next week
-marine_forecast('Nazare', daily='wave_height_max')
+marine_forecast("Nazare", daily = "wave_height_max")
 }
 }
