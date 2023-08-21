@@ -35,7 +35,7 @@ Open-Meteo provides several API endpoints through the following functions:
 
 Please review the API documentation at [Open-Meteo.com](https://open-meteo.com/) for
 details regarding the data available, its types, units, and other caveats
-and considerations. `openmeteo` is hosted on [CRAN](https://cran.r-project.org/web/packages/openmeteo/index.html) where it has a rendered [reference manual](https://cran.r-project.org/web/packages/openmeteo/openmeteo.pdf).
+and considerations.
 
 Please feel free to raise any issues / pull requests if your use case is not supported.
 
