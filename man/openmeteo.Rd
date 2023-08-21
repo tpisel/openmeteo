@@ -3,6 +3,7 @@
 \docType{package}
 \name{openmeteo}
 \alias{openmeteo}
+\alias{openmeteo-package}
 \title{openmeteo: retrieve weather data from the Open-Meteo API}
 \description{
 \code{openmeteo} provides functions for accessing the Open-Meteo

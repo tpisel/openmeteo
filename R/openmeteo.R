@@ -29,5 +29,5 @@
 #'
 #' @docType package
 #' @name openmeteo
+#' @aliases openmeteo-package
 NULL
-#>  NULL
