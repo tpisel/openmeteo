@@ -1,3 +1,7 @@
+# openmeteo 0.2.3
+
+* Fix for handling different weather models
+
 # openmeteo 0.2.2
 
 * Minor documentation changes

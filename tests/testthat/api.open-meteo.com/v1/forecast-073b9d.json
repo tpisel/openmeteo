@@ -1,7 +1,7 @@
 {
     "latitude": -12.5,
     "longitude": -130.875,
-    "generationtime_ms": 5.944013595581055,
+    "generationtime_ms": 0.024080276489257812,
     "utc_offset_seconds": -32400,
     "timezone": "Etc/GMT+9",
     "timezone_abbreviation": "-09",
@@ -25,17 +25,17 @@
             "2023-01-08"
         ],
         "temperature_2m_max": [
-            25.3,
-            25.4,
-            26.1,
-            26.4,
-            26.6,
-            26.6,
-            26.2,
-            26.0,
-            26.1,
-            25.9,
-            25.7
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
         ]
     }
 }

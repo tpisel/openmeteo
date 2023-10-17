@@ -1,17 +1,27 @@
 {
     "latitude": -12.5,
     "longitude": 130.875,
-    "generationtime_ms": 0.2359151840209961,
+    "generationtime_ms": 0.03695487976074219,
     "utc_offset_seconds": 34200,
     "timezone": "Australia/Darwin",
     "timezone_abbreviation": "ACST",
     "elevation": 29.0,
+    "current_weather_units": {
+        "time": "iso8601",
+        "interval": "seconds",
+        "temperature": "°F",
+        "windspeed": "mp/h",
+        "winddirection": "°",
+        "is_day": "",
+        "weathercode": "wmo code"
+    },
     "current_weather": {
-        "temperature": 75.8,
-        "windspeed": 2.9,
-        "winddirection": 219.0,
-        "weathercode": 2,
+        "time": "2023-10-17T19:45",
+        "interval": 900,
+        "temperature": 84.7,
+        "windspeed": 5.4,
+        "winddirection": 277,
         "is_day": 0,
-        "time": "2023-08-07T22:30"
+        "weathercode": 1
     }
 }

@@ -35,7 +35,7 @@ utils::globalVariables(c("time", "datetime"))
     if (length(model) != 1) {
       stop("Please specify only one model per query.") # may support later
     }
-    queries$model <- paste(model, collapse = ",")
+    queries$models <- paste(model, collapse = ",")
   }
 
   # request (decode necessary as API treats ',' differently to '%2C')
