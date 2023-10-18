@@ -75,6 +75,7 @@ air_quality <- function(
     NULL,
     NULL,
     timezone,
+    NULL, # no downscaling option for  air quality
     base_url
   )
 }

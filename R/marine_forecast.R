@@ -90,6 +90,7 @@ marine_forecast <- function(
     response_units,
     NULL, # no model selection for marine api
     timezone,
+    NULL, # no downscaling option of marine api
     base_url
   )
 }

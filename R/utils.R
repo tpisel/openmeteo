@@ -11,6 +11,7 @@ utils::globalVariables(c("time", "datetime"))
     response_units,
     model,
     timezone,
+    downscaling,
     base_url) {
   coordinates <- .coords_generic(location)
 
@@ -35,8 +36,15 @@ utils::globalVariables(c("time", "datetime"))
     if (length(model) != 1) {
       stop("Please specify only one model per query.") # may support later
     }
-    queries$model <- paste(model, collapse = ",")
+    if(any(model %in% c("CMCC_CM2_VHR4", "FGOALS_f3_H", "HiRAM_SIT_HR", "MRI_AGCM3_2_S", "EC_Earth3P_HR", "MPI_ESM1_2_XR", "NICAM16_8S"))){
+      queries$models <- paste(model, collapse = ",")
+    }else{
+      queries$model <- paste(model, collapse = ",")
+    }
   }
+
+  ## handle downscaling switch for climate forecast
+  if(!is.null(downscaling))queries[["disable_bias_correction"]] <- paste(!downscaling, collapse = ",")
 
   # request (decode necessary as API treats ',' differently to '%2C')
   pl <- httr::GET(utils::URLdecode(httr::modify_url(base_url, query = queries)))

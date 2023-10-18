@@ -51,6 +51,7 @@
 #' @param timezone specify timezone for time data as a string, i.e.
 #'   "australia/sydney" (defaults to "auto", the timezone local to the specified
 #'   `location`).
+#' @param downscaling Enable (default) or disable statistical downscaling with ERA5-Land (10 km).
 #'
 #' @return Requested climate forecast data for the given location and time
 #'   period, as a tidy tibble.
@@ -80,6 +81,7 @@ climate_forecast <- function(
     daily = NULL,
     response_units = NULL,
     model = NULL,
+    downscaling = TRUE,
     timezone = "auto") {
   # validation
   if (is.null(daily)) {
@@ -91,7 +93,9 @@ climate_forecast <- function(
   if (!is.null(end) && !.is.date(end)) {
     stop("start and end dates must be in ISO-1806 format")
   }
-
+  if (!is.logical(downscaling)) {
+    stop("parameter downscaling must be TRUE or FALSE")
+  }
   base_url <- "https://climate-api.open-meteo.com/v1/climate"
 
   .query_openmeteo(
@@ -101,6 +105,7 @@ climate_forecast <- function(
     response_units,
     model,
     timezone,
+    downscaling,
     base_url
   )
 }

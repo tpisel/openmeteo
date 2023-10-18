@@ -87,6 +87,7 @@ weather_history <- function(
     response_units,
     model,
     timezone,
+    NULL, # doesn't support downscaling option
     base_url
   )
 }
