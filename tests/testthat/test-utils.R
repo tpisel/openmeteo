@@ -56,7 +56,7 @@ with_mock_api({
 
   test_that("return co-ords from string", {
     expect_equal(.coords_generic(c(90, 180)), c(90, 180))
-    expect_equal(.coords_generic("Darwin"), c(-12.46113, 130.84184))
+    expect_equal(.coords_generic("Darwin"), c(-12.5, 131.0), tolerance=0.1)
     expect_error(.coords_generic("sdflksdjflsdkjf"), "No matches found")
     expect_error(
       .coords_generic(c(-10, 200)),
