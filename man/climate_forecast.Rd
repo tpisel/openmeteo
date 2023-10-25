@@ -11,6 +11,7 @@ climate_forecast(
   daily = NULL,
   response_units = NULL,
   model = NULL,
+  downscaling = TRUE,
   timezone = "auto"
 )
 }
@@ -31,6 +32,8 @@ precipitation units. This defaults to: \verb{list(temperature_unit = "celsius",}
 
 \item{model}{Supply to specify a climate model for forecasted values (refer
 to the API documentation).}
+
+\item{downscaling}{Enable (default) or disable statistical downscaling with ERA5-Land (10 km).}
 
 \item{timezone}{specify timezone for time data as a string, i.e.
 "australia/sydney" (defaults to "auto", the timezone local to the specified

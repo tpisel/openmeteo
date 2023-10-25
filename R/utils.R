@@ -11,6 +11,7 @@ utils::globalVariables(c("time", "datetime"))
     response_units,
     model,
     timezone,
+    downscaling,
     base_url) {
   coordinates <- .coords_generic(location)
 
@@ -37,6 +38,9 @@ utils::globalVariables(c("time", "datetime"))
     }
     queries$models <- paste(model, collapse = ",")
   }
+
+  ## handle downscaling switch for climate forecast
+  if(!is.null(downscaling))queries[["disable_bias_correction"]] <- paste(!downscaling, collapse = ",")
 
   # request (decode necessary as API treats ',' differently to '%2C')
   pl <- httr::GET(utils::URLdecode(httr::modify_url(base_url, query = queries)))

@@ -76,6 +76,7 @@ river_discharge <- function(
     NULL,
     model,
     NULL, # doesn't support timezone
+    NULL, # doesn't support downscaling option
     base_url
   )
 }
