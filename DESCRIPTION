@@ -1,6 +1,6 @@
 Package: openmeteo
 Title: Retrieve Weather Data from the Open-Meteo API
-Version: 0.2.2
+Version: 0.2.3
 Authors@R: person("Tom", "Pisel", email = "mail@tompisel.com", role = c("aut",
     "cre","cph"))
 Description: A client for the Open-Meteo API that retrieves Open-Meteo
