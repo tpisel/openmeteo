@@ -1,6 +1,6 @@
 ## New version
 
-- Fix for specifying different weather models
+- Support for retrieving raw climate model data without calibration with ERA5 
 
 ## R CMD check results
 

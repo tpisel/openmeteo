@@ -1,3 +1,7 @@
+# openmeteo 0.2.4
+
+* Ability to raw climate model data without calibration with ERA5 (from @lochbika)
+
 # openmeteo 0.2.3
 
 * Fix for handling different weather models
