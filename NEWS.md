@@ -1,8 +1,7 @@
-# openmeteo 0.2.5.9000
+# openmeteo 0.2.6
 
-* Added support for querying commercial customer endpoints with a paid Open-Meteo subscription by setting the `OPENMETEO_API_KEY` environment variable.
+* Added support for querying commercial customer endpoints with a paid Open-Meteo subscription by setting the `OPENMETEO_API_KEY` environment variable (#13, thanks @jacobmmears)
 * Updated package requirements to depend on R \>= 4.1.0.
-* Updated `README.md` to include information about how to access the commercial endpoints.
 
 # openmeteo 0.2.5
 

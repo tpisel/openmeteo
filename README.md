@@ -5,12 +5,23 @@ _An Open Meteo SDK for R_
 [![R-CMD-check](https://github.com/tpisel/openmeteo/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tpisel/openmeteo/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
+> **Note:** `openmeteo` is no longer published on CRAN and is in light
+> maintenance — it remains functional but is not actively developed.
+> Install it from GitHub (see below).
+
 `openmeteo` provides functions for accessing the [Open-Meteo
 weather API](https://open-meteo.com/), enabling the desired weather data or forecasts to be retrieved
 in a tidy data format. An API key is _not_ required to access the
 Open-Meteo API.
 
-Install and load with: `install.packages("openmeteo") library(openmeteo)`  
+Install from GitHub with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("tpisel/openmeteo")
+library(openmeteo)
+```
+
 Getting current weather for a location is as easy as: `weather_now('tokyo')`  
 Explore the documentation with `?openmeteo`
 
@@ -38,7 +49,8 @@ Please review the API documentation at [Open-Meteo.com](https://open-meteo.com/)
 details regarding the data available, its types, units, and other caveats
 and considerations.
 
-Please feel free to raise any issues / pull requests if your use case is not supported.
+This package is maintained on a best-effort basis. Issues and pull requests are
+welcome, but may not receive a timely response.
 
 ## Authentication (Optional)
 
