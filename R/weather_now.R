@@ -31,7 +31,7 @@ weather_now <- function(
     response_units = NULL,
     timezone = "auto") {
   coordinates <- .coords_generic(location)
-  base_url <- "https://api.open-meteo.com/v1/forecast"
+  base_url <- .lookup_open_meteo_url(fxn_name = "weather_now")
 
   # base queries
   queries <- list(
@@ -43,6 +43,12 @@ weather_now <- function(
 
   # add units as supplied
   queries <- c(queries, response_units)
+
+  api_key <- Sys.getenv("OPENMETEO_API_KEY", unset = NA_character_)
+
+  if (!is.na(api_key) && nzchar(api_key)) {
+    queries$apikey <- api_key
+  }
 
   # request (decode necessary as API treats ',' differently to '%2C')
   pl <- httr::GET(utils::URLdecode(httr::modify_url(base_url, query = queries)))

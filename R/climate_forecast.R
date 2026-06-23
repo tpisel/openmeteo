@@ -96,7 +96,7 @@ climate_forecast <- function(
   if (!is.logical(downscaling)) {
     stop("parameter downscaling must be TRUE or FALSE")
   }
-  base_url <- "https://climate-api.open-meteo.com/v1/climate"
+  base_url <- .lookup_open_meteo_url(fxn_name = "climate_forecast")
 
   .query_openmeteo(
     location,

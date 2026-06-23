@@ -40,6 +40,28 @@ and considerations.
 
 Please feel free to raise any issues / pull requests if your use case is not supported.
 
+## Authentication (Optional)
 
+Most Open-Meteo APIs can be accessed without an API key.
 
+Users with a paid Open-Meteo subscription can authenticate by setting
+the `OPENMETEO_API_KEY` environment variable:
 
+``` r
+Sys.setenv(OPENMETEO_API_KEY = "your-api-key")
+```
+
+For persistent configuration, add the key to your `.Renviron` file:
+
+``` text
+OPENMETEO_API_KEY=your-api-key
+```
+
+When set, `openmeteo` will automatically include the API key in requests
+and switch to Open-Meteo commercial endpoints.
+
+Please review Open-Meteo's Terms of Service and License for details
+regarding commercial and non-commercial use:
+
+-   <https://open-meteo.com/en/terms>
+-   <https://open-meteo.com/en/licence>

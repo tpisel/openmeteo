@@ -46,6 +46,12 @@ utils::globalVariables(c("time", "datetime"))
   ## handle downscaling switch for climate forecast
   if(!is.null(downscaling))queries[["disable_bias_correction"]] <- paste(!downscaling, collapse = ",")
 
+  api_key <- Sys.getenv("OPENMETEO_API_KEY", unset = NA_character_)
+
+  if (!is.na(api_key) && nzchar(api_key)) {
+    queries$apikey <- api_key
+  }
+
   # request (decode necessary as API treats ',' differently to '%2C')
   pl <- httr::GET(utils::URLdecode(httr::modify_url(base_url, query = queries)))
   .response_OK(pl)
@@ -209,3 +215,67 @@ utils::globalVariables(c("time", "datetime"))
   })
   dplyr::bind_rows(rows)
 }
+
+
+# lookup API endpoint for a function, switching to customer URL if API key is set
+.lookup_open_meteo_url <- local({
+  urls <- list(
+    air_quality = c(
+      noncommercial = "https://air-quality-api.open-meteo.com/v1/air-quality",
+      commercial = "https://customer-air-quality-api.open-meteo.com/v1/air-quality"
+    ),
+    climate_forecast = c(
+      noncommercial = "https://climate-api.open-meteo.com/v1/climate",
+      commercial = "https://customer-climate-api.open-meteo.com/v1/climate"
+    ),
+    ensemble_models = c(
+      noncommercial = "https://ensemble-api.open-meteo.com/v1/ensemble",
+      commercial = "https://customer-ensemble-api.open-meteo.com/v1/ensemble"
+    ),
+    geocode = c(
+      noncommercial = "https://geocoding-api.open-meteo.com/v1/search",
+      commercial = "https://customer-geocoding-api.open-meteo.com/v1/search"
+    ),
+    marine_forecast = c(
+      noncommercial = "https://marine-api.open-meteo.com/v1/marine",
+      commercial = "https://customer-marine-api.open-meteo.com/v1/marine"
+    ),
+    river_discharge = c(
+      noncommercial = "https://flood-api.open-meteo.com/v1/flood",
+      commercial = "https://customer-flood-api.open-meteo.com/v1/flood"
+    ),
+    weather_forecast = c(
+      noncommercial = "https://api.open-meteo.com/v1/forecast",
+      commercial = "https://customer-api.open-meteo.com/v1/forecast"
+    ),
+    weather_history = c(
+      noncommercial = "https://archive-api.open-meteo.com/v1/archive",
+      commercial = "https://customer-archive-api.open-meteo.com/v1/archive"
+    ),
+    weather_now = c(
+      noncommercial = "https://api.open-meteo.com/v1/forecast",
+      commercial = "https://customer-api.open-meteo.com/v1/forecast"
+    )
+  )
+
+  function(fxn_name) {
+    if (!is.character(fxn_name) || length(fxn_name) != 1L || is.na(fxn_name)) {
+      stop("'fxn_name' must be a single non-missing character value.", call. = FALSE)
+    }
+
+    if (!fxn_name %in% names(urls)) {
+      stop(
+        sprintf("'fxn_name' must be one of: %s", paste(names(urls), collapse = ", ")),
+        call. = FALSE
+      )
+    }
+
+    url_type <- if (isTRUE(nzchar(Sys.getenv("OPENMETEO_API_KEY")))) {
+      "commercial"
+    } else {
+      "noncommercial"
+    }
+
+    unname(urls[[fxn_name]][[url_type]])
+  }
+})

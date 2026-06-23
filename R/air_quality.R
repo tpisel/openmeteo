@@ -80,7 +80,7 @@ air_quality <- function(
     stop("start and end dates must be in ISO-1806 format")
   }
 
-  base_url <- "https://air-quality-api.open-meteo.com/v1/air-quality"
+  base_url <- .lookup_open_meteo_url(fxn_name = "air_quality")
 
   .query_openmeteo(
     location,

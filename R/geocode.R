@@ -43,7 +43,7 @@ geocode <- function(location_name,
   if (!is.character(location_name)) stop("location_name must be string")
   if (!is.numeric(n_results)) stop("n_results must be integer/numeric")
 
-  base_url <- httr::parse_url("https://geocoding-api.open-meteo.com/v1/search")
+  base_url <- httr::parse_url(base_url <- .lookup_open_meteo_url(fxn_name = "geocode"))
 
   queries <- list(
     name = location_name,
@@ -51,6 +51,12 @@ geocode <- function(location_name,
     language = language
   )
 
+  api_key <- Sys.getenv("OPENMETEO_API_KEY", unset = NA_character_)
+
+  if (!is.na(api_key) && nzchar(api_key)) {
+    queries$apikey <- api_key
+  }
+  
   pl <- httr::GET(httr::modify_url(base_url, query = queries))
   .response_OK(pl)
 

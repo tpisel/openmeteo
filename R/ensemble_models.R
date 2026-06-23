@@ -88,7 +88,7 @@ ensemble_models <- function(
     stop("start and end dates must be in ISO-1806 format")
   }
 
-  base_url <- "https://ensemble-api.open-meteo.com/v1/ensemble"
+  base_url <- .lookup_open_meteo_url(fxn_name = "ensemble_models")
 
   .query_openmeteo(
     location,

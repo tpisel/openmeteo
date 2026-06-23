@@ -98,7 +98,7 @@ weather_forecast <- function(
     stop("start and end dates must be in ISO-1806 format")
   }
 
-  base_url <- "https://api.open-meteo.com/v1/forecast"
+  base_url <- .lookup_open_meteo_url(fxn_name = "weather_forecast")
 
   .query_openmeteo(
     location,

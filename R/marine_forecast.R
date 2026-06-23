@@ -81,7 +81,7 @@ marine_forecast <- function(
     stop("start and end dates must be in ISO-1806 format")
   }
 
-  base_url <- "https://marine-api.open-meteo.com/v1/marine"
+  base_url <- .lookup_open_meteo_url(fxn_name = "marine_forecast")
 
   .query_openmeteo(
     location,
